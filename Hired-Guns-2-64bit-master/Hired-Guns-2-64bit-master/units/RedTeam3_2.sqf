@@ -1,0 +1,26 @@
+//SYNDIKAT
+R3_PLANE = "I_C_Plane_Civil_01_F";
+R3_BOAT1 = "I_C_Boat_Transport_01_F";
+R3_BOAT2 = "I_C_Boat_Transport_02_F";
+R3_B_RIFLE1 = "I_C_Soldier_Bandit_7_F";
+R3_B_RIFLE2 = "I_C_Soldier_Bandit_5_F";
+R3_B_RIFLE3 = "I_C_Soldier_Bandit_4_F";
+R3_B_MG = "I_C_Soldier_Bandit_3_F";
+R3_B_MISSILE = "I_C_Soldier_Bandit_2_F";
+R3_B_PILOT = "I_C_Pilot_F";
+R3_B_UGL = "I_C_Soldier_Bandit_6_F";
+R3_B_MEDIC = "I_C_Soldier_Bandit_1_F";
+R3_B_MINES = "I_C_Soldier_Bandit_8_F";
+R3_P_RIFLE1 = "I_C_Soldier_Para_7_F";
+R3_P_RIFLE2 = "I_C_Soldier_Para_2_F";
+R3_P_RIFLE3 = "I_C_Soldier_Para_1_F";
+R3_P_PILOT = "I_C_Helipilot_F";
+R3_P_MEDIC = "I_C_Soldier_Para_3_F";
+R3_P_MG = "I_C_Soldier_Para_4_F";
+R3_P_UGL = "I_C_Soldier_Para_6_F";
+R3_P_EXP = "I_C_Soldier_Para_8_F";
+R3_P_MISSILE = "I_C_Soldier_Para_5_F";
+R3_OFFICER = "I_C_Soldier_Camo_F";
+R3_HELI = "I_C_Heli_Light_01_civil_F";
+R3_CAR = "I_C_Offroad_02_unarmed_F";
+R3_TRUCK = "I_C_Van_01_transport_F";

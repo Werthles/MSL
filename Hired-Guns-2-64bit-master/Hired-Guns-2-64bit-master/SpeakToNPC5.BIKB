@@ -1,0 +1,151 @@
+//SpeakToNPC.BIKB
+//NPC Interaction Sentences
+//Called from Server, from SendProgress Event
+//Creates speech interactions
+
+class Sentences
+{
+	class greetNPC5b0
+	{
+		text = "Hi there. Would you be available for a job?";
+		speech[] = {"\sound\NPC5\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b1
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b2
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b3
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b4
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b5
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b6
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b7
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b8
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b9
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b10
+	{
+		text = "Thanks for your help ensuring the safety of the mine.";
+		speech[] = {"\sound\NPC5\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC5b0
+	{
+		text = "We need a delivery driver to get our minerals to the port.";
+		speech[] = {"\sound\NPC5\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b1
+	{
+		text = "Can you fly a helicopter?";
+		speech[] = {"\sound\NPC5\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b2
+	{
+		text = "We have a problem with some locals.";
+		speech[] = {"\sound\NPC5\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b3
+	{
+		text = "A large delivery has arrived for us in the port.";
+		speech[] = {"\sound\NPC5\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b4
+	{
+		text = "We need another supply driver.";
+		speech[] = {"\sound\NPC5\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b5
+	{
+		text = "A convoy needs air support.";
+		speech[] = {"\sound\NPC5\offer5.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b6
+	{
+		text = "Our port is coming under attack!";
+		speech[] = {"\sound\NPC5\offer6.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b7
+	{
+		text = "A large delivery has arrived for us in the port.";
+		speech[] = {"\sound\NPC5\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b8
+	{
+		text = "We have more trouble from thieves.";
+		speech[] = {"\sound\NPC5\offer8.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b9
+	{
+		text = "Our mine is under attack!";
+		speech[] = {"\sound\NPC5\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b10
+	{
+		text = "We aren't currently hiring, sorry.";
+		speech[] = {"\sound\NPC5\offer10.ogg"};
+		class Arguments {};
+	};
+	class pause
+	{
+		text = "";
+		speech[] = {"\sound\pause.ogg"};
+		class Arguments {};
+	};
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};

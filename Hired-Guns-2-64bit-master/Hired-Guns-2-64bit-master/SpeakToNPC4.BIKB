@@ -1,0 +1,150 @@
+//SpeakToNPC.BIKB
+//NPC Interaction Sentences
+//Called from Server, from SendProgress Event
+//Creates speech interactions
+
+class Sentences
+{
+	class greetNPC4b0
+	{
+		text = "Have you come to surrender yourself to us?";
+		speech[] = {"\sound\NPC4\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b1
+	{
+		text = "Have you come to surrender yourself to us?";
+		speech[] = {"\sound\NPC4\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b2
+	{
+		text = "Have you come to surrender yourself to us?";
+		speech[] = {"\sound\NPC4\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b3
+	{
+		text = "Are you ready for a bigger job?";
+		speech[] = {"\sound\NPC4\greet3.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b4
+	{
+		text = "Welcome back.";
+		speech[] = {"\sound\NPC4\greet4.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b5
+	{
+		text = "Welcome back.";
+		speech[] = {"\sound\NPC4\greet4.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b6
+	{
+		text = "Welcome back.";
+		speech[] = {"\sound\NPC4\greet4.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b7
+	{
+		text = "Hi Boss.";
+		speech[] = {"\sound\NPC4\greet7.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b8
+	{
+		text = "Hi Boss.";
+		speech[] = {"\sound\NPC4\greet7.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b9
+	{
+		text = "Hi Boss.";
+		speech[] = {"\sound\NPC4\greet7.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b10
+	{
+		text = "Hi Boss.";
+		speech[] = {"\sound\NPC4\greet7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b0
+	{
+		text = "Oh, OK. Well I need help with something.";
+		speech[] = {"\sound\NPC4\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b1
+	{
+		text = "Oh, OK. Well I need help with something.";
+		speech[] = {"\sound\NPC4\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b2
+	{
+		text = "Oh, OK. Well I need help with something.";
+		speech[] = {"\sound\NPC4\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b3
+	{
+		text = "We could use your help with something.";
+		speech[] = {"\sound\NPC4\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b4
+	{
+		text = "We could use your help with something.";
+		speech[] = {"\sound\NPC4\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b5
+	{
+		text = "We could use your help with something.";
+		speech[] = {"\sound\NPC4\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b6
+	{
+		text = "Something has to be done. You need to do it.";
+		speech[] = {"\sound\NPC4\offer6.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b7
+	{
+		text = "We need to regain control of our workers.";
+		speech[] = {"\sound\NPC4\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b8
+	{
+		text = "We need to regain control of our workers.";
+		speech[] = {"\sound\NPC4\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b9
+	{
+		text = "We need to regain control of our workers.";
+		speech[] = {"\sound\NPC4\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b10
+	{
+		text = "All our businesses are operating well, sir.";
+		speech[] = {"\sound\NPC4\offer10.ogg"};
+		class Arguments {};
+	};
+	class pause
+	{
+		text = "";
+		speech[] = {"\sound\pause.ogg"};
+		class Arguments {};
+	};
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};

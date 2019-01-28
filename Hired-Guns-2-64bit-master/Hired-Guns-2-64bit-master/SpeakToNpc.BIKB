@@ -1,0 +1,1366 @@
+//SpeakToNPC.BIKB
+//NPC Interaction Sentences
+//Called from Server, from SendProgress Event
+//Creates speech interactions
+
+class Sentences
+{
+	class greetNPC0b0
+	{
+		text = "Who are you? Another one looking for work?";
+		speech[] = {"\sound\NPC0\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b1
+	{
+		text = "Those thugs won't bother us again.";
+		speech[] = {"\sound\NPC0\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b2
+	{
+		text = "Those supplies were just what we needed.";
+		speech[] = {"\sound\NPC0\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b3
+	{
+		text = "They shouldn't have tried to take what isn't theirs.";
+		speech[] = {"\sound\NPC0\greet3.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b4
+	{
+		text = "That village won't forget their history again.";
+		speech[] = {"\sound\NPC0\greet4.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b5
+	{
+		text = "How dare they try to operate our trains.";
+		speech[] = {"\sound\NPC0\greet5.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b6
+	{
+		text = "If only all those cultists were as quiet as he is.";
+		speech[] = {"\sound\NPC0\greet6.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b7
+	{
+		text = "Thank you for protecting our people.";
+		speech[] = {"\sound\NPC0\greet7.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b8
+	{
+		text = "Hopefully we will stand a better chance now.";
+		speech[] = {"\sound\NPC0\greet8.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b9
+	{
+		text = "CSAT sympathisers won't touch us now. Thank you.";
+		speech[] = {"\sound\NPC0\greet9.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b10
+	{
+		text = "Well done. Rural Tanoa is just like it used to be.";
+		speech[] = {"\sound\NPC0\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC0b0
+	{
+		text = "We have thugs that need to be dealt with.";
+		speech[] = {"\sound\NPC0\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b1
+	{
+		text = "We need supplies to keep defending ourselves.";
+		speech[] = {"\sound\NPC0\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b2
+	{
+		text = "Northerners are trying to steal from our power station.";
+		speech[] = {"\sound\NPC0\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b3
+	{
+		text = "One of our villages needs to be brought under control.";
+		speech[] = {"\sound\NPC0\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b4
+	{
+		text = "Our rail depot has become a hostage to western mercenaries.";
+		speech[] = {"\sound\NPC0\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b5
+	{
+		text = "The mercenaries are trying to buy support for their illegal war.";
+		speech[] = {"\sound\NPC0\offer5.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b6
+	{
+		text = "I need you to act fast to defend our town from the mercenaries.";
+		speech[] = {"\sound\NPC0\offer6.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b7
+	{
+		text = "There are spies hiding in the jungle to the south.";
+		speech[] = {"\sound\NPC0\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b8
+	{
+		text = "Be quick, the terrorists are invading our home!";
+		speech[] = {"\sound\NPC0\offer8.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b9
+	{
+		text = "There's just one more job to do.";
+		speech[] = {"\sound\NPC0\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b10
+	{
+		text = "Just keep Rural Tanoa safe from now on.";
+		speech[] = {"\sound\NPC0\offer10.ogg"};
+		class Arguments {};
+	};
+
+
+	class greetNPC1b0
+	{
+		text = "Do you follow the way of the Nyan?";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b1
+	{
+		text = "Nyan have mercy on their souls.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b2
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b3
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b4
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b5
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b6
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b7
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b8
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b9
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b10
+	{
+		text = "Greetings, oh great Lord Nyan.";
+		speech[] = {"\sound\NPC1\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC1b0
+	{
+		text = "There are some that have turned from the path.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b1
+	{
+		text = "Supplies are needed for our journey.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b2
+	{
+		text = "We need to work to purify this plain.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b3
+	{
+		text = "We need to work to purify this plain.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b4
+	{
+		text = "The darkness comes. I see it spreading.";
+		speech[] = {"\sound\NPC1\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b5
+	{
+		text = "We need to work to purify this plain.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b6
+	{
+		text = "We need to work to purify this plain.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b7
+	{
+		text = "The darkness comes. I see it spreading.";
+		speech[] = {"\sound\NPC1\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b8
+	{
+		text = "The darkness comes. I see it spreading.";
+		speech[] = {"\sound\NPC1\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b9
+	{
+		text = "Nyan requires you for the most holy of tasks.";
+		speech[] = {"\sound\NPC1\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b10
+	{
+		text = "I will continue to protect your people, oh great one.";
+		speech[] = {"\sound\NPC1\offer10.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b0
+	{
+		text = "Hi there. What skills would you bring to our company?";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b1
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b2
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b3
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b4
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b5
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b6
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b7
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b8
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b9
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b10
+	{
+		text = "Our company's long term future has been secured.";
+		speech[] = {"\sound\NPC1\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC2b0
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b1
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b2
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b3
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b4
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b5
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b6
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b7
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b8
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b9
+	{
+		text = "There is a permanent vacancy which would suite your skills.";
+		speech[] = {"\sound\NPC1\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b10
+	{
+		text = "Profits are at record levels thanks to the hard work of colleagues like you.";
+		speech[] = {"\sound\NPC1\offer10.ogg"};
+		class Arguments {};
+	};
+
+
+
+	class greetNPC3b0
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b1
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b2
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b3
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet3.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b4
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet4.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b5
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet5.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b6
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet6.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b7
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet7.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b8
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet8.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b9
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet9.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b10
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\greet10.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b0
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b1
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b2
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b3
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b4
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b5
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer5.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b6
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer6.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b7
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b8
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer8.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b9
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b10
+	{
+		text = "";
+		speech[] = {"\sound\NPC1\offer10.ogg"};
+		class Arguments {};
+	};
+
+	class greetNPC4b0
+	{
+		text = "Have you come to surrender yourself to us?";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b1
+	{
+		text = "Have you come to surrender yourself to us?";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b2
+	{
+		text = "Have you come to surrender yourself to us?";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b3
+	{
+		text = "Are you ready for a bigger job?";
+		speech[] = {"\sound\NPC1\greet3.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b4
+	{
+		text = "Welcome back.";
+		speech[] = {"\sound\NPC1\greet4.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b5
+	{
+		text = "Welcome back.";
+		speech[] = {"\sound\NPC1\greet4.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b6
+	{
+		text = "Welcome back.";
+		speech[] = {"\sound\NPC1\greet4.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b7
+	{
+		text = "Hi Boss.";
+		speech[] = {"\sound\NPC1\greet7.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b8
+	{
+		text = "Hi Boss.";
+		speech[] = {"\sound\NPC1\greet7.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b9
+	{
+		text = "Hi Boss.";
+		speech[] = {"\sound\NPC1\greet7.ogg"};
+		class Arguments {};
+	};
+	class greetNPC4b10
+	{
+		text = "Hi Boss.";
+		speech[] = {"\sound\NPC1\greet7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b0
+	{
+		text = "Oh, OK. Well I need help with something.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b1
+	{
+		text = "Oh, OK. Well I need help with something.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b2
+	{
+		text = "Oh, OK. Well I need help with something.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b3
+	{
+		text = "We could use your help with something.";
+		speech[] = {"\sound\NPC1\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b4
+	{
+		text = "We could use your help with something.";
+		speech[] = {"\sound\NPC1\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b5
+	{
+		text = "We could use your help with something.";
+		speech[] = {"\sound\NPC1\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b6
+	{
+		text = "Something has to be done. You need to do it.";
+		speech[] = {"\sound\NPC1\offer6.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b7
+	{
+		text = "We need to regain control of our workers.";
+		speech[] = {"\sound\NPC1\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b8
+	{
+		text = "We need to regain control of our workers.";
+		speech[] = {"\sound\NPC1\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b9
+	{
+		text = "We need to regain control of our workers.";
+		speech[] = {"\sound\NPC1\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC4b10
+	{
+		text = "All our businesses are operating well, sir.";
+		speech[] = {"\sound\NPC1\offer10.ogg"};
+		class Arguments {};
+	};
+
+
+
+	class greetNPC5b0
+	{
+		text = "Hi there. Would you be available for a job?";
+		speech[] = {"\sound\NPC5\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b1
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b2
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b3
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b4
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b5
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b6
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b7
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b8
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b9
+	{
+		text = "Are you available for another job?";
+		speech[] = {"\sound\NPC5\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC5b10
+	{
+		text = "Thanks for your help ensuring the safety of the mine.";
+		speech[] = {"\sound\NPC5\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC5b0
+	{
+		text = "We need a delivery driver to get our minerals to the port.";
+		speech[] = {"\sound\NPC5\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b1
+	{
+		text = "Can you fly a helicopter?";
+		speech[] = {"\sound\NPC5\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b2
+	{
+		text = "We have a problem with some locals.";
+		speech[] = {"\sound\NPC5\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b3
+	{
+		text = "A large delivery has arrived for us in the port.";
+		speech[] = {"\sound\NPC5\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b4
+	{
+		text = "We need another supply driver.";
+		speech[] = {"\sound\NPC5\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b5
+	{
+		text = "A convoy needs air support.";
+		speech[] = {"\sound\NPC5\offer5.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b6
+	{
+		text = "Our port is coming under attack!";
+		speech[] = {"\sound\NPC5\offer6.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b7
+	{
+		text = "A large delivery has arrived for us in the port.";
+		speech[] = {"\sound\NPC5\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b8
+	{
+		text = "We have more trouble from thieves.";
+		speech[] = {"\sound\NPC5\offer8.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b9
+	{
+		text = "Our mine is under attack!";
+		speech[] = {"\sound\NPC5\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC5b10
+	{
+		text = "We aren't currently hiring, sorry.";
+		speech[] = {"\sound\NPC5\offer10.ogg"};
+		class Arguments {};
+	};
+	
+	
+	class greetNPC6b0
+	{
+		text = "Friend or foe, stranger?";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b1
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b2
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b3
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b4
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b5
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b6
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b7
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b8
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b9
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b10
+	{
+		text = "Thank you for all your work.";
+		speech[] = {"\sound\NPC1\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC6b0
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b1
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b2
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b3
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b4
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b5
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b6
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b7
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b8
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b9
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b10
+	{
+		text = "We are safe now.";
+		speech[] = {"\sound\NPC1\offer10.ogg"};
+		class Arguments {};
+	};
+
+
+
+	class greetNPC7b0
+	{
+		text = "Welcome to my home.";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b1
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b2
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b3
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b4
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b5
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b6
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b7
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b8
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b9
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b10
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC7b0
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b1
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b2
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b3
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b4
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b5
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b6
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b7
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b8
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b9
+	{
+		text = "I have a big job for you to do now.";
+		speech[] = {"\sound\NPC1\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b10
+	{
+		text = "You have made me a very happy man.";
+		speech[] = {"\sound\NPC1\offer10.ogg"};
+		class Arguments {};
+	};
+
+
+
+	class greetNPC8b0
+	{
+		text = "Hey man, try one of these.";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC8b1
+	{
+		text = "Hey, we've got more work for you.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC8b2
+	{
+		text = "Hey, we've got more work for you.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC8b3
+	{
+		text = "Hey, we've got more work for you.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC8b4
+	{
+		text = "Hey, we've got more work for you.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC8b5
+	{
+		text = "Hey, we've got more work for you.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC8b6
+	{
+		text = "Hey, we've got more work for you.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC8b7
+	{
+		text = "Hey, we've got more work for you.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC8b8
+	{
+		text = "Hey, we've got more work for you.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC8b9
+	{
+		text = "Hey, we've got more work for you.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC8b10
+	{
+		text = "Hey man, try one of these.";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC8b0
+	{
+		text = "Oh OK. Well I have lots of products to deliver.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC8b1
+	{
+		text = "Amateurs are ruining our business again.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC8b2
+	{
+		text = "More products are loaded up ready.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC8b3
+	{
+		text = "Amateurs are ruining our business again.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC8b4
+	{
+		text = "More products are loaded up ready.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC8b5
+	{
+		text = "Amateurs are ruining our business again.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC8b6
+	{
+		text = "Amateurs are ruining our business again.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC8b7
+	{
+		text = "More products are loaded up ready.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC8b8
+	{
+		text = "More products are loaded up ready.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC8b9
+	{
+		text = "Amateurs are ruining our business again.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC8b10
+	{
+		text = "You can chill here with me if you want.";
+		speech[] = {"\sound\NPC1\offer10.ogg"};
+		class Arguments {};
+	};
+
+
+
+	class greetNPC9b0
+	{
+		text = "Can you fly a plane?";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b1
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b2
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b3
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b4
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b5
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b6
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b7
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b8
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b9
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b10
+	{
+		text = "You did it. We rule the skies.";
+		speech[] = {"\sound\NPC1\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC9b0
+	{
+		text = "Well can you at least try?";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b1
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b2
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b3
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b4
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b5
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b6
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b7
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b8
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b9
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b10
+	{
+		text = "Everyone is using our products now.";
+		speech[] = {"\sound\NPC1\offer10.ogg"};
+		class Arguments {};
+	};
+	class pause
+	{
+		text = "";
+		speech[] = {"\sound\pause.ogg"};
+		class Arguments {};
+	};
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};

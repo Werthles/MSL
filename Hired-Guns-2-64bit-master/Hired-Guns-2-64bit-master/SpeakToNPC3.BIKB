@@ -1,0 +1,150 @@
+//SpeakToNPC.BIKB
+//NPC Interaction Sentences
+//Called from Server, from SendProgress Event
+//Creates speech interactions
+
+class Sentences
+{
+	class greetNPC3b0
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b1
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b2
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b3
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet3.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b4
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet4.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b5
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet5.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b6
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet6.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b7
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet7.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b8
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet8.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b9
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet9.ogg"};
+		class Arguments {};
+	};
+	class greetNPC3b10
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\greet10.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b0
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b1
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b2
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b3
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b4
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b5
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer5.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b6
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer6.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b7
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b8
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer8.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b9
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC3b10
+	{
+		text = "";
+		speech[] = {"\sound\NPC3\offer10.ogg"};
+		class Arguments {};
+	};
+	class pause
+	{
+		text = "";
+		speech[] = {"\sound\pause.ogg"};
+		class Arguments {};
+	};
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};

@@ -1,0 +1,1118 @@
+//description.ext
+//Runs on all machines
+//Loaded on mission select
+//Sets up all mission parameters
+
+#include "defines.hpp"
+#include "dialogs.hpp"
+
+onPauseScript = "OnPauseScript.sqf";
+
+//disabledAI ?
+disabledAI = 1;  
+
+// Respawn Settings
+
+// Delay in seconds before playable unit respawns.
+respawnDelay = 10;
+
+// Respawn type, 0 or "NONE" - No respawn, 1 or "BIRD" - Respawn as a seagull, 2 or "INSTANT" - Respawn just where you died, 3 or "BASE" - Respawn in base, 4 or "GROUP" - Respawn in your group (if there's no AI left, you'll become a seagull), 5 or "SIDE" - Respawn into an AI unit on your side (if there's no AI left, you'll become a seagull). With this respawn type, team switch is also available to any AI controlled playable units.
+respawn = "BASE";
+
+// 1 to execute respawn templates when a player joins the game. Available only for INSTANT and BASE respawn types.
+respawnOnStart = -1;
+
+//revive
+//The time it takes to revive an incapacitated unit (default: 6 seconds). Having a Medikit will halve this time. Must have "Revive" Respawn template enabled.
+//reviveDelay = 30;
+
+//The time it takes for an incapacitated unit to force their respawn (default: 3 seconds). Must have "Revive" Respawn template enabled.
+//reviveForceRespawnDelay = 5;
+
+//The time it takes for a unit to bleed out (default: 2 minutes). Must have "Revive" Respawn template enabled.
+//reviveBleedOutDelay = 300;
+
+// Delay in seconds before vehicle respawns.
+respawnVehicleDelay = 5;
+
+// Respawn templates from CfgRespawnTemplates. You can combine any number of them together.
+respawnTemplatesGuer[] = {"Base","MenuPosition"};
+//"Wave","Side","MenuInventory","ExtraRespawnThings","Counter","Revive"
+
+// Side specific respawn templates. When undefined, general respawnTemplates are used instead.
+//respawnTemplatesEast[] = {"Counter"};
+//respawnTemplatesCiv[] = {"Base","CivRespawn"};
+
+//Show the scoreboard and respawn countdown timer for a player if he is killed with respawnType 3. Default is 1 (true).
+respawnDialog = 1;
+
+// When 1, the score table contains score of all playable units as opposed to players only.
+//aiKills = 1;
+
+//Author of the mission.
+author="Werthles";
+
+//String (usually mission name) shown during mission loading.
+OnLoadName = "Hired Guns 2 - Tanoan Anarchy";
+
+//Displays a message while the mission is loading.
+OnLoadMission = "For best performance, invite players to join the server once Hired Guns 2 is already running.";
+
+//define a picture to be shown while the mission is loaded.
+loadScreen = "images\loadScreen.jpg";
+
+//Path to image which will be displayed when the mission is highlighted on the mission selection screen. in 2:1 aspect ratio.
+overviewPicture = "images\loadScreen.jpg";
+
+//Text to be displayed below the overviewPicture on the mission selection screen when the mission is available to play.
+overviewText = "Continue your campaign to establish control and order for the new leaders of Tanoa after CSAT's demise.<br/><br/>- Open-World Campaign<br/>- Over 100 Unique, Hand-Made, Story-Linked Jobs<br/>- Progress/Gear/Vehicles/Money Saved To Host<br/>- Start With A Gun, Build A Fortune";
+
+//When enabled, joining player will join the mission bypassing role selection screen. The joinUnassigned param will be set to 1 automatically, so that player receives 1st available role from mission template. When leaving such mission, player will go straight back to server browser.
+//skipLobby = 1; //enabled
+
+
+//Define whether you will see the time and date displayed while the mission loads. 1 means visible, 0 hidden.
+onLoadMissionTime = 1;
+
+//Define whether you will see the time and date displayed while the intro loads. 1 means visible, 0 hidden.
+//onLoadIntroTime = 1;
+
+//Displays a message while the intro is loading.
+//onLoadIntro = "Intro loading...";
+
+//Disable dropping items while swimming. 0 = Disable, 1 = Enable
+enableItemsDropping = 0;
+
+//By default a new player is not auto assigned a free playable slot in the mission lobby in Multiplayer. Set it to 0/false to make him auto assigned to the side with least players. 0 = Disable, 1 = Enable
+//joinUnassigned = 1;
+
+//Allow functions to log to the RPT file. Set it to 1/true to allow RPT logging. 0 = Disable, 1 = Enable
+allowFunctionsLog = 1;//true
+
+//Allows access to the Debug Console outside of the editor during normal gameplay.0 = Default behavior, available only in editor, 1 = Available in SP and for hosts / logged in admins, 2 = Available for everyone
+enableDebugConsole = 1;
+
+//When set to 1, changes default GPS mini map into a radar like display that indicates group members relative position to the player
+//showGroupIndicator = 1;
+
+//As a security measure, functions are by default protected against rewriting during the mission. This restriction does not apply in missions previewed from the editor and in missions with the following attribute in Description.ext
+allowFunctionsRecompile = 0;
+
+//0: do not use new 2D markers (default), 1: replace task markers with new 2D markers
+taskManagement_markers2D = 1;
+
+//0: do not use new 3D markers (default), 1: replace task waypoints with new 3D markers
+taskManagement_markers3D = 1;
+
+//0: do not propagate (default), 1: propagate shared tasks to subordinates
+taskManagement_propagate = 1;
+
+//3d marker draw distance in meters (default: 2000). within this range, unassigned tasks are drawn on screen.
+taskManagement_drawDist = 2500;
+
+//Disables randomization on certain objects, object types or object kinds in the mission.
+//disableRandomization[] = {"All", "AllVehicles", "B_G_Offroad_01_F", "myCar", "MyUnitName", "B_Soldier_F"};
+
+//Multiplayer Game Type info
+class Header
+{
+	gameType = Coop;
+	minPlayers = 1;
+	maxPlayers = 40;
+};
+
+//Sets the mode for corpse removal manager.
+//corpseManagerMode = 1;
+//0 = None - None of the units are managed by the manager
+//1 = All - All units are managed by the manager
+//2 = None_But_Respawned - Only units that can respawn are managed by the manager
+//3 = All_But_Respawned - All units are managed by the manager with exception of respawned (opposite to mode 2)
+//Default value: 0 for SP, 2 for MP
+
+//Corpse limit before which ( <= ) corpseRemovalMaxTime applies and after which ( > ) corpseRemovalMinTime applies (see below).
+//corpseLimit = 10;
+//Default value: 15
+
+//Remove all bodies that have been dead longer than corpseRemovalMinTime when corpseLimit is breached.
+//corpseRemovalMinTime = 600; //seconds
+//Default value: 10
+
+//Maximum time a corpse can remain on the ground if total number of corpses is equal or under corpseLimit.
+//corpseRemovalMaxTime = 1200; //seconds
+//Default value: 3600
+
+//Sets the mode for wreck removal manager.
+//wreckManagerMode = 1;
+//0 = None - None of the vehicles are managed by the manager
+//1 = All - All vehicles are managed by the manager
+//2 = None_But_Respawned - Only vehicles that can respawn are managed by the manager
+//3 = All_But_Respawned - All vehicles are managed by the manager with exception of respawned (opposite to mode 2)
+//Default value: 0 for SP, 2 for MP
+
+//Vehicle wreck limit before which ( <= ) wreckRemovalMaxTime applies and after which ( > ) wreckRemovalMinTime applies (see below).
+//wreckLimit = 5;
+//Default value: 15
+
+//Remove all wrecks that have existed longer than wreckRemovalMinTime when wreckLimit is breached.
+//wreckRemovalMinTime = 600; //seconds
+//Default value: 10
+
+//Maximum time a wreck can remain on the ground if total number of wrecks is equal or under wreckLimit.
+//wreckRemovalMaxTime = 1200; //seconds
+//Default value: 3600
+
+//Switch on or off debriefing
+debriefing = 0;
+
+//ReviveMode = 1;
+//ReviveUnconsciousStateMode = 0;
+//ReviveRequiredTrait = 0;
+//ReviveRequiredItems = 2;
+//ReviveRequiredItemsFakConsumed = 1;
+//ReviveMedicSpeedMultiplier = 1;
+//reviveDelay = 10;
+//reviveForceRespawnDelay = 3;
+//reviveBleedOutDelay = 110;
+
+class Params{
+	class WHMActivate {//0
+		title= "Activate WHM";
+		values[]= {0,1};
+		texts[]= {"No","Yes"};
+		default= 1;
+	};
+	class MissionTimeLimit {//1
+		title= "Job Time Limit";
+		values[]= {3600,5400,7200,10800,14400,18000,21600,43200,86400,172800};
+		texts[]= {"1 Hour","1.5 Hours","2 Hours","3 Hours","4 Hours","5 Hours","6 Hours","12 Hours","24 Hours","48 Hours"};
+		default= 10800;
+	};
+	class MaxCivTownCount {//2
+		title= "Maximum Number of Civilians Per Town";
+		values[]= {0,1,2,3,4,5,10,15,20,25};
+		texts[]= {"0","1","2","3","4","5","10","15","20","25"};
+		default= 10;
+	};
+	class BlueType1 {//3
+		title= "BlueFor Team 1";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class BlueType2 {//4
+		title= "BlueFor Team 2";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class RedType1 {//5
+		title= "OpFor Team 1";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class RedType2 {//6
+		title= "OpFor Team 2";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class GreenType1 {//7
+		title= "Independent Team 1";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class GreenType2 {//8
+		title= "Independent Team 2";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class CivType1 {//9
+		title= "Civilian Team 1";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class CivType2 {//10
+		title= "Civilian Team 2";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class MoneyListDelay {//11
+		title= "Time Between Money List Updates";
+		values[]= {1,3,5,10,30,60};
+		texts[]= {"1 Minute","3 Minutes","5 Minutes","10 Minutes","30 Minutes","60 Minutes"};
+		default= 1;
+	};
+	class KickTimeLimit {//12
+		title= "How Long After Accepting A Job Can A Squad Member Be Kicked";
+		values[]= {5,10,15,20,30,40,50,60};
+		texts[]= {"5 Minutes","10 Minutes","15 Minutes","20 Minutes","30 Minutes","40 Minutes","50 Minutes","60 Minutes"};
+		default= 20;
+	};
+	class TaxisOn {//13
+		title= "Enable Taxis";
+		values[]= {1,0};
+		texts[]= {"Enable","Disable"};
+		default= 1;
+	};
+	class RedType3 {//14
+		title= "Red Team 3";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class BlueType3 {//15
+		title= "Blue Team 3";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class GreenType3 {//16
+		title= "Green Team 3";
+		values[]= {0,1,2,3};
+		texts[]= {"Default","Alternative 1","Alternative 2","Alternative 3"};
+		default= 0;
+	};
+	class Difficulty {//17
+		title= "Difficulty Level";
+		values[]= {0,1};
+		texts[]= {"Normal","Hard"};
+		default= 0;
+	};
+	class PlayerMarkers {//18
+		title= "Player Team Markers";
+		values[]= {-1,1,2,5,10,15};
+		texts[]= {"Off","Every 1 Minute","Every 2 Minutes","Every 5 Minutes","Every 10 Minutes","Every 15 Minutes"};
+		default= 2;
+	};
+	//#include "\a3\Functions_F\Params\paramRevive.hpp"
+};
+class CfgRoles
+{
+	class HiredGun
+	{
+		displayName = "Hired Gun";
+		icon = "\A3\Ui_f\data\GUI\Cfg\Ranks\major_gs.paa";
+	};
+};
+class CfgNotifications
+{
+	//class Default
+	//{
+		//title = ""; // Tile displayed as text on black background. Filled by arguments.
+		//iconPicture = ""; // Small icon displayed in left part. Colored by "color", filled by arguments.
+		//iconText = ""; // Short text displayed over the icon. Colored by "color", filled by arguments.
+		//description = ""; // Brief description displayed as structured text. Colored by "color", filled by arguments.
+		//color[] = {1,0.5,0.5,1}; // Icon and text color
+		//duration = 5; // How many seconds will the notification be displayed
+		//priority = 0; // Priority; higher number = more important; tasks in queue are selected by priority
+		//difficulty[] = {}; // Required difficulty settings. All listed difficulties has to be enabled
+	//};
+ 
+	// Examples
+ 	class TaskAssigned
+	{
+		title = "NEW JOB";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskIcon_ca.paa";
+		description = "%2";
+		duration = 8;
+		color[] = {1,1,1,1}; // Icon and text color
+		priority = 7;
+	};
+	class TaskSucceeded
+	{
+		title = "JOB COMPLETED";
+		description = "%2";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskicondone_ca.paa";
+		color[] = {0,1,0,1};
+		duration = 8;
+		priority = 7;
+	};
+	class TaskCanceled
+	{
+		title = "JOB CANCELLED";
+		description = "%2";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskiconcanceled_ca.paa";
+		color[] = {1,0.6,0.7,0.8};
+		priority = 7;
+	};
+	class TaskFailed
+	{
+		title = "JOB FAILED";
+		description = "%2";
+		iconPicture = "\A3\ui_f\data\map\mapcontrol\taskiconfailed_ca.paa";
+		color[] = {1,0,0,1};
+		priority = 7;
+	};
+};
+
+class CfgTaskTypes
+{
+	class taxi
+	{
+		//icon = \A3\Ui_f\data\IGUI\Cfg\simpleTasks\types\download_ca.paa;
+		//icon = \A3\Ui_f\data\IGUI\Cfg\simpleTasks\letters\h_ca.paa;
+		icon = "images\taxi32.paa";
+	};
+};
+
+class RscTitles
+{
+    titles[] = {introImage}; // optional
+
+    class introImage
+    {    
+        idd = -1;    
+        movingEnable = false;
+        duration = 2; // 2 second display time
+        fadein = 1; // 1 second fade in - 3 seconds in all.
+        name = "IntroImage"; 
+
+        //class ControlsBackground
+        //{
+            //class Background : RscText //Black background for letterboxing in case of a different aspect ratio than the image
+            //{
+               //x = "safeZoneX";
+               //y = "safeZoneY";
+               //w = "safeZoneW";
+               //h = "safeZoneH";
+               //colorBackground[] = {0,0,0,1};
+           //};
+        //};
+        class Controls
+        {
+            class image1: RscPicture
+            {    
+                x = "safeZoneX";
+                y = "safeZoneY+((safeZoneH-(safeZoneW/(2048/1024)*(4/3)))/2)"; //Substitute 2048 and 1024 for the x,y dimensions of your image
+                w = "safeZoneW";
+                h = "safeZoneW/(2048/1024)*(4/3)"; //Substitute 2048 and 1024 for the x,y dimensions of your image
+                text = "images\HiredGuns.paa";
+            };
+        };
+    };
+};
+
+class CfgSounds
+{
+   	sounds[] =
+      	{
+			0b0, 0b1, 0b2, 0b3, 0b4, 0b5, 0b6, 0b7, 0b8, 0b9,
+         	1b0, 1b1, 1b2, 1b3, 1b4, 1b5, 1b6, 1b7, 1b8, 1b9,
+         	2b0, 2b1, 2b2, 2b3, 2b4, 2b5, 2b6, 2b7, 2b8, 2b9,
+         	3b0, 3b1, 3b2, 3b3, 3b4, 3b5, 3b6, 3b7, 3b8, 3b9,
+         	4b0, 4b1, 4b2, 4b3, 4b4, 4b5, 4b6, 4b7, 4b8, 4b9,
+         	5b0, 5b1, 5b2, 5b3, 5b4, 5b5, 5b6, 5b7, 5b8, 5b9,
+         	6b0, 6b1, 6b2, 6b3, 6b4, 6b5, 6b6, 6b7, 6b8, 6b9,
+         	7b0, 7b1, 7b2, 7b3, 7b4, 7b5, 7b6, 7b7, 7b8, 7b9,
+         	8b0, 8b1, 8b2, 8b3, 8b4, 8b5, 8b6, 8b7, 8b8, 8b9,
+         	9b0, 9b1, 9b2, 9b3, 9b4, 9b5, 9b6, 9b7, 9b8, 9b9
+      	};
+   	class 0b0
+   	{
+      		name = "0b0";
+      		sound[] = {"\sound\NPC0b0.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 0b1
+   	{
+      		name = "0b1";
+      		sound[] = {"\sound\NPC0b1.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 0b2
+   	{
+      		name = "0b2";
+      		sound[] = {"\sound\NPC0b2.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 0b3
+   	{
+      		name = "0b3";
+      		sound[] = {"\sound\NPC0b3.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 0b4
+   	{
+      		name = "0b4";
+      		sound[] = {"\sound\NPC0b4.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 0b5
+   	{
+      		name = "0b5";
+      		sound[] = {"\sound\NPC0b5.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 0b6
+   	{
+      		name = "0b6";
+      		sound[] = {"\sound\NPC0b6.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 0b7
+   	{
+      		name = "0b7";
+      		sound[] = {"\sound\NPC0b7.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 0b8
+   	{
+      		name = "0b8";
+      		sound[] = {"\sound\NPC0b8.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 0b9
+   	{
+      		name = "0b9";
+      		sound[] = {"\sound\NPC0b9.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 1b0
+   	{
+      		name = "1b0";
+      		sound[] = {"\sound\NPC1b0.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 1b1
+   	{
+      		name = "1b1";
+      		sound[] = {"\sound\NPC1b1.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 1b2
+   	{
+      		name = "1b2";
+      		sound[] = {"\sound\NPC1b2.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 1b3
+   	{
+      		name = "1b3";
+      		sound[] = {"\sound\NPC1b3.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 1b4
+   	{
+      		name = "1b4";
+      		sound[] = {"\sound\NPC1b4.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 1b5
+   	{
+      		name = "1b5";
+      		sound[] = {"\sound\NPC1b5.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 1b6
+   	{
+      		name = "1b6";
+      		sound[] = {"\sound\NPC1b6.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 1b7
+   	{
+      		name = "1b7";
+      		sound[] = {"\sound\NPC1b7.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 1b8
+   	{
+      		name = "1b8";
+      		sound[] = {"\sound\NPC1b8.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 1b9
+   	{
+      		name = "1b9";
+      		sound[] = {"\sound\NPC1b9.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 2b0
+   	{
+      		name = "2b0";
+      		sound[] = {"\sound\NPC2b0.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 2b1
+   	{
+      		name = "2b1";
+      		sound[] = {"\sound\NPC2b1.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 2b2
+   	{
+      		name = "2b2";
+      		sound[] = {"\sound\NPC2b2.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 2b3
+   	{
+      		name = "2b3";
+      		sound[] = {"\sound\NPC2b3.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 2b4
+   	{
+      		name = "2b4";
+      		sound[] = {"\sound\NPC2b4.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 2b5
+   	{
+      		name = "2b5";
+      		sound[] = {"\sound\NPC2b5.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 2b6
+   	{
+      		name = "2b6";
+      		sound[] = {"\sound\NPC2b6.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 2b7
+   	{
+      		name = "2b7";
+      		sound[] = {"\sound\NPC2b7.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 2b8
+   	{
+      		name = "2b8";
+      		sound[] = {"\sound\NPC2b8.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 2b9
+   	{
+      		name = "2b9";
+      		sound[] = {"\sound\NPC2b9.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 3b0
+   	{
+      		name = "3b0";
+      		sound[] = {"\sound\NPC3b0.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 3b1
+   	{
+      		name = "3b1";
+      		sound[] = {"\sound\NPC3b1.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 3b2
+   	{
+      		name = "3b2";
+      		sound[] = {"\sound\NPC3b2.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 3b3
+   	{
+      		name = "3b3";
+      		sound[] = {"\sound\NPC3b3.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 3b4
+   	{
+      		name = "3b4";
+      		sound[] = {"\sound\NPC3b4.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 3b5
+   	{
+      		name = "3b5";
+      		sound[] = {"\sound\NPC3b5.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 3b6
+   	{
+      		name = "3b6";
+      		sound[] = {"\sound\NPC3b6.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 3b7
+   	{
+      		name = "3b7";
+      		sound[] = {"\sound\NPC3b7.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 3b8
+   	{
+      		name = "3b8";
+      		sound[] = {"\sound\NPC3b8.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 3b9
+   	{
+      		name = "3b9";
+      		sound[] = {"\sound\NPC3b9.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 4b0
+   	{
+      		name = "4b0";
+      		sound[] = {"\sound\NPC4b0.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 4b1
+   	{
+      		name = "4b1";
+      		sound[] = {"\sound\NPC4b1.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 4b2
+   	{
+      		name = "4b2";
+      		sound[] = {"\sound\NPC4b2.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 4b3
+   	{
+      		name = "4b3";
+      		sound[] = {"\sound\NPC4b3.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 4b4
+   	{
+      		name = "4b4";
+      		sound[] = {"\sound\NPC4b4.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 4b5
+   	{
+      		name = "4b5";
+      		sound[] = {"\sound\NPC4b5.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 4b6
+   	{
+      		name = "4b6";
+      		sound[] = {"\sound\NPC4b6.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 4b7
+   	{
+      		name = "4b7";
+      		sound[] = {"\sound\NPC4b7.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 4b8
+   	{
+      		name = "4b8";
+      		sound[] = {"\sound\NPC4b8.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 4b9
+   	{
+      		name = "4b9";
+      		sound[] = {"\sound\NPC4b9.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 5b0
+   	{
+      		name = "5b0";
+      		sound[] = {"\sound\NPC5b0.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 5b1
+   	{
+      		name = "5b1";
+      		sound[] = {"\sound\NPC5b1.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 5b2
+   	{
+      		name = "5b2";
+      		sound[] = {"\sound\NPC5b2.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 5b3
+   	{
+      		name = "5b3";
+      		sound[] = {"\sound\NPC5b3.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 5b4
+   	{
+      		name = "5b4";
+      		sound[] = {"\sound\NPC5b4.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 5b5
+   	{
+      		name = "5b5";
+      		sound[] = {"\sound\NPC5b5.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 5b6
+   	{
+      		name = "5b6";
+      		sound[] = {"\sound\NPC5b6.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 5b7
+   	{
+      		name = "5b7";
+      		sound[] = {"\sound\NPC5b7.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 5b8
+   	{
+      		name = "5b8";
+      		sound[] = {"\sound\NPC5b8.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 5b9
+   	{
+      		name = "5b9";
+      		sound[] = {"\sound\NPC5b9.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 6b0
+   	{
+      		name = "6b0";
+      		sound[] = {"\sound\NPC6b0.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 6b1
+   	{
+      		name = "6b1";
+      		sound[] = {"\sound\NPC6b1.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 6b2
+   	{
+      		name = "6b2";
+      		sound[] = {"\sound\NPC6b2.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 6b3
+   	{
+      		name = "6b3";
+      		sound[] = {"\sound\NPC6b3.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 6b4
+   	{
+      		name = "6b4";
+      		sound[] = {"\sound\NPC6b4.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 6b5
+   	{
+      		name = "6b5";
+      		sound[] = {"\sound\NPC6b5.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 6b6
+   	{
+      		name = "6b6";
+      		sound[] = {"\sound\NPC6b6.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 6b7
+   	{
+      		name = "6b7";
+      		sound[] = {"\sound\NPC6b7.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 6b8
+   	{
+      		name = "6b8";
+      		sound[] = {"\sound\NPC6b8.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 6b9
+   	{
+      		name = "6b9";
+      		sound[] = {"\sound\NPC6b9.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 7b0
+   	{
+      		name = "7b0";
+      		sound[] = {"\sound\NPC7b0.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 7b1
+   	{
+      		name = "7b1";
+      		sound[] = {"\sound\NPC7b1.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 7b2
+   	{
+      		name = "7b2";
+      		sound[] = {"\sound\NPC7b2.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 7b3
+   	{
+      		name = "7b3";
+      		sound[] = {"\sound\NPC7b3.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 7b4
+   	{
+      		name = "7b4";
+      		sound[] = {"\sound\NPC7b4.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 7b5
+   	{
+      		name = "7b5";
+      		sound[] = {"\sound\NPC7b5.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 7b6
+   	{
+      		name = "7b6";
+      		sound[] = {"\sound\NPC7b6.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 7b7
+   	{
+      		name = "7b7";
+      		sound[] = {"\sound\NPC7b7.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 7b8
+   	{
+      		name = "7b8";
+      		sound[] = {"\sound\NPC7b8.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 7b9
+   	{
+      		name = "7b9";
+      		sound[] = {"\sound\NPC7b9.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 8b0
+   	{
+      		name = "8b0";
+      		sound[] = {"\sound\NPC8b0.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 8b1
+   	{
+      		name = "8b1";
+      		sound[] = {"\sound\NPC8b1.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 8b2
+   	{
+      		name = "8b2";
+      		sound[] = {"\sound\NPC8b2.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 8b3
+   	{
+      		name = "8b3";
+      		sound[] = {"\sound\NPC8b3.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 8b4
+   	{
+      		name = "8b4";
+      		sound[] = {"\sound\NPC8b4.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 8b5
+   	{
+      		name = "8b5";
+      		sound[] = {"\sound\NPC8b5.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 8b6
+   	{
+      		name = "8b6";
+      		sound[] = {"\sound\NPC8b6.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 8b7
+   	{
+      		name = "8b7";
+      		sound[] = {"\sound\NPC8b7.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 8b8
+   	{
+      		name = "8b8";
+      		sound[] = {"\sound\NPC8b8.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 8b9
+   	{
+      		name = "8b9";
+      		sound[] = {"\sound\NPC8b9.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 9b0
+   	{
+      		name = "9b0";
+      		sound[] = {"\sound\NPC9b0.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 9b1
+   	{
+      		name = "9b1";
+      		sound[] = {"\sound\NPC9b1.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 9b2
+   	{
+      		name = "9b2";
+      		sound[] = {"\sound\NPC9b2.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 9b3
+   	{
+      		name = "9b3";
+      		sound[] = {"\sound\NPC9b3.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 9b4
+   	{
+      		name = "9b4";
+      		sound[] = {"\sound\NPC9b4.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 9b5
+   	{
+      		name = "9b5";
+      		sound[] = {"\sound\NPC9b5.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 9b6
+   	{
+      		name = "9b6";
+      		sound[] = {"\sound\NPC9b6.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 9b7
+   	{
+      		name = "9b7";
+      		sound[] = {"\sound\NPC9b7.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 9b8
+   	{
+      		name = "9b8";
+      		sound[] = {"\sound\NPC9b8.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+   	class 9b9
+   	{
+      		name = "9b9";
+      		sound[] = {"\sound\NPC9b9.ogg", 1, 1.0};
+      		titles[] = {   };
+   	};
+};
+
+class CfgTaskEnhancements
+{
+   enable       = 1;            //0: disable new task features (default), 1: enable new task features & add new task markers and task widgets into the map
+   3d           = 1;            //0: do not use new 3D markers (default), 1: replace task waypoints with new 3D markers
+   3dDrawDist   = 10000;        //3d marker draw distance (default: 2000)
+   share        = 1;            //0: do not count assigned players (default), 1: count how many players have the task assigned
+   propagate    = 1;            //0: do not propagate (default), 1: propagate shared tasks to subordinates
+};
+
+class CfgIdentities
+{
+    class NPC0
+    {
+        name = "The Old Man";
+		glasses="G_Aviator";
+        //nameSound = "Givens";//WomanHead_A3
+        face="GreekHead_A3_04";//GreekHead_A3_04
+		speaker="Male01PER";
+		pitch=1.0;
+    };
+    class NPC1
+    {
+        name = "The Cult Leader";
+        //nameSound = "Givens";
+		glasses="";
+        face="WhiteHead_03";
+		speaker="Male01ENGB";
+		pitch=1.0;
+    };
+    class NPC2
+    {
+        name = "The Entrepreneur";
+        //nameSound = "Givens";
+		glasses="";
+        face="WhiteHead_15";
+		speaker="Male03PER";
+		pitch=1.0;
+    };
+    class NPC3
+    {
+        name = "The Tanoan Narcotics Driver";
+		glasses="";
+        //nameSound = "Givens";
+        face="AfricanHead_01";
+		speaker="Male06ENG";
+		pitch=1.0;
+    };
+    class NPC4
+    {
+        name = "The Slave Commander";
+		glasses="";
+        //nameSound = "Givens";
+        face="AsianHead_A3_01";
+		speaker="Male04GRE";
+		pitch=1.0;
+    };
+    class NPC5
+    {
+        name = "The Mine Supervisor";
+		glasses="";
+        //nameSound = "Givens";
+        face="PersianHead_A3_03";
+		speaker="Male10ENG";
+		pitch=1.0;
+    };
+    class NPC6
+    {
+        name = "The Market Protector";
+		glasses="";
+        //nameSound = "Givens";
+        face="AfricanHead_03";
+		speaker="Male01GRE";
+		pitch=1.0;
+    };
+    class NPC7
+    {
+        name = "The Rich Man";
+		glasses="";
+        //nameSound = "Givens";
+        face="AfricanHead_02";
+		speaker="Male02GRE";
+		pitch=1.0;
+    };
+    class NPC8
+    {
+        name = "The Tanoan Narcotics Captain";
+		glasses="";
+        //nameSound = "Givens";
+        face="PersianHead_A3_01";
+		speaker="Male02PER";
+		pitch=1.0;
+    };
+    class NPC9
+    {
+        name = "The Tanoan Narcotics Pilot";
+		glasses="";
+        //nameSound = "Givens";
+        face="WhiteHead_04";
+		speaker="Male04ENGB";
+		pitch=1.0;
+    };
+};

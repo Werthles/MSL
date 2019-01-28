@@ -1,0 +1,151 @@
+//SpeakToNPC.BIKB
+//NPC Interaction Sentences
+//Called from Server, from SendProgress Event
+//Creates speech interactions
+
+class Sentences
+{
+	class greetNPC7b0
+	{
+		text = "Welcome to my home.";
+		speech[] = {"\sound\NPC7\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b1
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC7\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b2
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC7\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b3
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC7\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b4
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC7\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b5
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC7\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b6
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC7\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b7
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC7\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b8
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC7\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b9
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC7\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC7b10
+	{
+		text = "Thank you for your help.";
+		speech[] = {"\sound\NPC7\greet1.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC7b0
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC7\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b1
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC7\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b2
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC7\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b3
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC7\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b4
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC7\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b5
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC7\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b6
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC7\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b7
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC7\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b8
+	{
+		text = "I have many jobs for you if you are willing.";
+		speech[] = {"\sound\NPC7\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b9
+	{
+		text = "I have a big job for you to do now.";
+		speech[] = {"\sound\NPC7\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC7b10
+	{
+		text = "You have made me a very happy man.";
+		speech[] = {"\sound\NPC7\offer10.ogg"};
+		class Arguments {};
+	};
+	class pause
+	{
+		text = "";
+		speech[] = {"\sound\pause.ogg"};
+		class Arguments {};
+	};
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};

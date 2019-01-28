@@ -1,0 +1,151 @@
+//SpeakToNPC.BIKB
+//NPC Interaction Sentences
+//Called from Server, from SendProgress Event
+//Creates speech interactions
+
+class Sentences
+{
+	class greetNPC0b0
+	{
+		text = "Who are you? Another one looking for work?";
+		speech[] = {"\sound\NPC0\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b1
+	{
+		text = "Those thugs won't bother us again.";
+		speech[] = {"\sound\NPC0\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b2
+	{
+		text = "Those supplies were just what we needed.";
+		speech[] = {"\sound\NPC0\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b3
+	{
+		text = "They shouldn't have tried to take what isn't theirs.";
+		speech[] = {"\sound\NPC0\greet3.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b4
+	{
+		text = "That village won't forget their history again.";
+		speech[] = {"\sound\NPC0\greet4.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b5
+	{
+		text = "How dare they try to operate our trains.";
+		speech[] = {"\sound\NPC0\greet5.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b6
+	{
+		text = "If only all those cultists were as quiet as he is.";
+		speech[] = {"\sound\NPC0\greet6.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b7
+	{
+		text = "Thank you for protecting our people.";
+		speech[] = {"\sound\NPC0\greet7.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b8
+	{
+		text = "Hopefully we will stand a better chance now.";
+		speech[] = {"\sound\NPC0\greet8.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b9
+	{
+		text = "CSAT sympathisers won't touch us now. Thank you.";
+		speech[] = {"\sound\NPC0\greet9.ogg"};
+		class Arguments {};
+	};
+	class greetNPC0b10
+	{
+		text = "Well done. Rural Tanoa is just like it used to be.";
+		speech[] = {"\sound\NPC0\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC0b0
+	{
+		text = "We have thugs that need to be dealt with.";
+		speech[] = {"\sound\NPC0\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b1
+	{
+		text = "We need supplies to keep defending ourselves.";
+		speech[] = {"\sound\NPC0\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b2
+	{
+		text = "Northerners are trying to steal from our power station.";
+		speech[] = {"\sound\NPC0\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b3
+	{
+		text = "One of our villages needs to be brought under control.";
+		speech[] = {"\sound\NPC0\offer3.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b4
+	{
+		text = "Our rail depot has become a hostage to western mercenaries.";
+		speech[] = {"\sound\NPC0\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b5
+	{
+		text = "The mercenaries are trying to buy support for their illegal war.";
+		speech[] = {"\sound\NPC0\offer5.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b6
+	{
+		text = "I need you to act fast to defend our town from the mercenaries.";
+		speech[] = {"\sound\NPC0\offer6.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b7
+	{
+		text = "There are spies hiding in the jungle to the south.";
+		speech[] = {"\sound\NPC0\offer7.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b8
+	{
+		text = "Be quick, the terrorists are invading our home!";
+		speech[] = {"\sound\NPC0\offer8.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b9
+	{
+		text = "There's just one more job to do.";
+		speech[] = {"\sound\NPC0\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC0b10
+	{
+		text = "Just keep Rural Tanoa safe from now on.";
+		speech[] = {"\sound\NPC0\offer10.ogg"};
+		class Arguments {};
+	};
+	class pause
+	{
+		text = "";
+		speech[] = {"\sound\pause.ogg"};
+		class Arguments {};
+	};
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};

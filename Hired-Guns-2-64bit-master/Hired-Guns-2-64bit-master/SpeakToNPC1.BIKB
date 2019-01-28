@@ -1,0 +1,151 @@
+//SpeakToNPC.BIKB
+//NPC Interaction Sentences
+//Called from Server, from SendProgress Event
+//Creates speech interactions
+
+class Sentences
+{
+	class greetNPC1b0
+	{
+		text = "Do you follow the way of the Nyan?";
+		speech[] = {"\sound\NPC1\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b1
+	{
+		text = "Nyan have mercy on their souls.";
+		speech[] = {"\sound\NPC1\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b2
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b3
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b4
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b5
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b6
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b7
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b8
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b9
+	{
+		text = "Nyan is pleased with your progress.";
+		speech[] = {"\sound\NPC1\greet2.ogg"};
+		class Arguments {};
+	};
+	class greetNPC1b10
+	{
+		text = "Greetings, oh great Lord Nyan.";
+		speech[] = {"\sound\NPC1\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC1b0
+	{
+		text = "There are some that have turned from the path.";
+		speech[] = {"\sound\NPC1\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b1
+	{
+		text = "Supplies are needed for our journey.";
+		speech[] = {"\sound\NPC1\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b2
+	{
+		text = "We need to work to purify this plain.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b3
+	{
+		text = "We need to work to purify this plain.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b4
+	{
+		text = "The darkness comes. I see it spreading.";
+		speech[] = {"\sound\NPC1\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b5
+	{
+		text = "We need to work to purify this plain.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b6
+	{
+		text = "We need to work to purify this plain.";
+		speech[] = {"\sound\NPC1\offer2.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b7
+	{
+		text = "The darkness comes. I see it spreading.";
+		speech[] = {"\sound\NPC1\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b8
+	{
+		text = "The darkness comes. I see it spreading.";
+		speech[] = {"\sound\NPC1\offer4.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b9
+	{
+		text = "Nyan requires you for the most holy of tasks.";
+		speech[] = {"\sound\NPC1\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC1b10
+	{
+		text = "I will continue to protect your people, oh great one.";
+		speech[] = {"\sound\NPC1\offer10.ogg"};
+		class Arguments {};
+	};
+	class pause
+	{
+		text = "";
+		speech[] = {"\sound\pause.ogg"};
+		class Arguments {};
+	};
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};

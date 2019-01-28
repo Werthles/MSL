@@ -1,0 +1,151 @@
+//SpeakToNPC.BIKB
+//NPC Interaction Sentences
+//Called from Server, from SendProgress Event
+//Creates speech interactions
+
+class Sentences
+{
+	class greetNPC2b0
+	{
+		text = "Hi there. What skills would you bring to our company?";
+		speech[] = {"\sound\NPC2\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b1
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC2\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b2
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC2\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b3
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC2\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b4
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC2\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b5
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC2\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b6
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC2\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b7
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC2\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b8
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC2\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b9
+	{
+		text = "Our interests have been protected.";
+		speech[] = {"\sound\NPC2\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC2b10
+	{
+		text = "Our company's long term future has been secured.";
+		speech[] = {"\sound\NPC2\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC2b0
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC2\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b1
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC2\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b2
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC2\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b3
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC2\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b4
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC2\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b5
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC2\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b6
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC2\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b7
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC2\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b8
+	{
+		text = "We currently have a number of temporary vacancies.";
+		speech[] = {"\sound\NPC2\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b9
+	{
+		text = "There is a permanent vacancy which would suite your skills.";
+		speech[] = {"\sound\NPC2\offer9.ogg"};
+		class Arguments {};
+	};
+	class offerNPC2b10
+	{
+		text = "Profits are at record levels thanks to the hard work of colleagues like you.";
+		speech[] = {"\sound\NPC2\offer10.ogg"};
+		class Arguments {};
+	};
+	class pause
+	{
+		text = "";
+		speech[] = {"\sound\pause.ogg"};
+		class Arguments {};
+	};
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};

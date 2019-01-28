@@ -26,7 +26,7 @@
 
 class MSLDialog
 {
-	idd=-3;
+	idd=-753;
 	movingEnable=true;
 	onLoad = "[(_this select 0)] spawn Werthles_fnc_MSLPrep";
 	colorActive[] = {0,0.7,0.3,0.7};
@@ -60,7 +60,7 @@ class MSLDialog
 		//};
 		class MSLTitle: RscText
 		{
-			idc = 1006;
+			idc = 7530;
 			text = "Mission Save/Load";
 			x = 2 * GUI_GRID_W + GUI_GRID_X;
 			y = 1.4 * GUI_GRID_H + GUI_GRID_Y;
@@ -69,7 +69,7 @@ class MSLDialog
 		};
 		class MissionsListbox: RscListbox
 		{
-			idc = 1500;
+			idc = 7531;
 			text = "one,two,three"; //--- ToDo: Localize;
 			x = 2 * GUI_GRID_W + GUI_GRID_X;
 			y = 6 * GUI_GRID_H + GUI_GRID_Y;
@@ -79,7 +79,7 @@ class MSLDialog
 		};
 		class SaveButton: RscButton
 		{
-			idc = 1600;
+			idc = 7532;
 			text = "Save"; //--- ToDo: Localize;
 			x = 2 * GUI_GRID_W + GUI_GRID_X;
 			y = 3.5 * GUI_GRID_H + GUI_GRID_Y;
@@ -90,7 +90,7 @@ class MSLDialog
 		};
 		class LoadButton: RscButton
 		{
-			idc = 1601;
+			idc = 7533;
 			text = "Load"; //--- ToDo: Localize;
 			x = 6 * GUI_GRID_W + GUI_GRID_X;
 			y = 3.5 * GUI_GRID_H + GUI_GRID_Y;
@@ -101,7 +101,7 @@ class MSLDialog
 		};
 		class DeleteButton: RscButton
 		{
-			idc = 1602;
+			idc = 7534;
 			text = "Delete"; //--- ToDo: Localize;
 			x = 10 * GUI_GRID_W + GUI_GRID_X;
 			y = 3.5 * GUI_GRID_H + GUI_GRID_Y;
@@ -111,7 +111,7 @@ class MSLDialog
 		};
 		class CloseButton: RscButton
 		{
-			idc = 1603;
+			idc = 7535;
 			text = "Close"; //--- ToDo: Localize;
 			x = 14 * GUI_GRID_W + GUI_GRID_X;
 			y = 3.5 * GUI_GRID_H + GUI_GRID_Y;

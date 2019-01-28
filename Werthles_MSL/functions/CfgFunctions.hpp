@@ -24,6 +24,8 @@ class CfgFunctions
 			class MSLLoadPlayer{};
 			class MSLPrepPlayer{};
 			class MSLSavePlayer{};
+			class MSLLocalUpdates{};
+			class MSLHint{};
 		};
 	};
 };

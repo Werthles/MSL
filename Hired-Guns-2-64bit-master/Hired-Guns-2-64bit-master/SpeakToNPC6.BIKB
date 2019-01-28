@@ -1,0 +1,151 @@
+//SpeakToNPC.BIKB
+//NPC Interaction Sentences
+//Called from Server, from SendProgress Event
+//Creates speech interactions
+
+class Sentences
+{
+	class greetNPC6b0
+	{
+		text = "Friend or foe, stranger?";
+		speech[] = {"\sound\NPC6\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b1
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC6\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b2
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC6\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b3
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC6\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b4
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC6\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b5
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC6\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b6
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC6\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b7
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC6\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b8
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC6\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b9
+	{
+		text = "The fight for justice must continue.";
+		speech[] = {"\sound\NPC6\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC6b10
+	{
+		text = "Thank you for all your work.";
+		speech[] = {"\sound\NPC6\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC6b0
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC6\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b1
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC6\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b2
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC6\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b3
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC6\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b4
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC6\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b5
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC6\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b6
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC6\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b7
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC6\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b8
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC6\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b9
+	{
+		text = "Are you prepared to fight?";
+		speech[] = {"\sound\NPC6\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC6b10
+	{
+		text = "We are safe now.";
+		speech[] = {"\sound\NPC6\offer10.ogg"};
+		class Arguments {};
+	};
+	class pause
+	{
+		text = "";
+		speech[] = {"\sound\pause.ogg"};
+		class Arguments {};
+	};
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};

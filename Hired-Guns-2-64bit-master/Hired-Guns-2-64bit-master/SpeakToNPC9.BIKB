@@ -1,0 +1,151 @@
+//SpeakToNPC.BIKB
+//NPC Interaction Sentences
+//Called from Server, from SendProgress Event
+//Creates speech interactions
+
+class Sentences
+{
+	class greetNPC9b0
+	{
+		text = "Can you fly a plane?";
+		speech[] = {"\sound\NPC9\greet0.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b1
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC9\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b2
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC9\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b3
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC9\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b4
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC9\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b5
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC9\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b6
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC9\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b7
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC9\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b8
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC9\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b9
+	{
+		text = "See. You can fly!";
+		speech[] = {"\sound\NPC9\greet1.ogg"};
+		class Arguments {};
+	};
+	class greetNPC9b10
+	{
+		text = "You did it. We rule the skies.";
+		speech[] = {"\sound\NPC9\greet10.ogg"};
+		class Arguments {};
+	};
+	
+	class offerNPC9b0
+	{
+		text = "Well can you at least try?";
+		speech[] = {"\sound\NPC9\offer0.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b1
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC9\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b2
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC9\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b3
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC9\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b4
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC9\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b5
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC9\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b6
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC9\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b7
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC9\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b8
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC9\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b9
+	{
+		text = "You've got another job to do.";
+		speech[] = {"\sound\NPC9\offer1.ogg"};
+		class Arguments {};
+	};
+	class offerNPC9b10
+	{
+		text = "Everyone is using our products now.";
+		speech[] = {"\sound\NPC9\offer10.ogg"};
+		class Arguments {};
+	};
+	class pause
+	{
+		text = "";
+		speech[] = {"\sound\pause.ogg"};
+		class Arguments {};
+	};
+};
+class Arguments{};
+class Special{};
+startWithVocal[] = {hour};
+startWithConsonant[] = {europe, university};
