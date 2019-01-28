@@ -14,3 +14,7 @@ _lbID = 7531;
 	(_control displayCtrl _lbID) lbSetPictureColor [_foreachindex, [1,1,1,0.7]];
 	(_control displayCtrl _lbID) lbSetPictureColorSelected [_foreachindex, [0.4,0.4,0,0.7]]; */
 }forEach _missionNames;
+
+ctrlEnable [7532, true];
+ctrlEnable [7533, true];
+ctrlEnable [7534, true];

@@ -2,9 +2,17 @@ hint "Serverload";
 //player setPos [1000,1000,1000];
 params [["_clientID",-2,[0]],["_filename","filename",[""]]];
 
+//safemode players
+{
+	_x setCaptive true;
+	_x allowDamage false;
+}forEach allPlayers;
+
 //Delete Everything
-
-
+{
+	if !((typeOf _x)=="Logic") then {deleteVehicle _x;};
+} forEach nearestObjects[[worldSize/2, worldSize/2], [], worldSize*2, false,true];
+{deleteVehicle _x}forEach allUnits;
 //Load everything
 _inidbi = ["new", _filename] call OO_INIDBI;
 
@@ -76,5 +84,11 @@ else
 {
 	[false,"This save was on a different map!"] remoteExec ["Werthles_fnc_MSLLoadPlayer",_clientID];
 };
+
+//unsafemode players
+{
+	_x setCaptive false;
+	_x allowDamage true;
+}forEach allPlayers;
 
 ["delete", _inidbi] call OO_INIDBI;

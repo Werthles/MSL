@@ -12,6 +12,3 @@ if (lbCurSel 7531 != -1) then {
 
 sleep 2;
 
-ctrlEnable [7532, true];
-ctrlEnable [7533, true];
-ctrlEnable [7534, true];
