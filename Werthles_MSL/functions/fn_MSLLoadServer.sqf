@@ -2,6 +2,9 @@ hint "Serverload";
 //player setPos [1000,1000,1000];
 params [["_clientID",-2,[0]],["_filename","filename",[""]]];
 
+_inidbi = ["new", _filename] call OO_INIDBI;
+_RworldName = ["read", ["MISSIONDETAILS", "worldName", ""]] call _inidbi;
+if (_RworldName == worldName) then {
 //safemode players
 {
 	_x setCaptive true;
@@ -9,16 +12,16 @@ params [["_clientID",-2,[0]],["_filename","filename",[""]]];
 }forEach allPlayers;
 
 //Delete Everything
+//{
+//	if !((typeOf _x)=="Logic") then {deleteVehicle _x;};
+//} forEach nearestObjects[[worldSize/2, worldSize/2], [], worldSize*2, false,true];
 {
 	if !((typeOf _x)=="Logic") then {deleteVehicle _x;};
-} forEach nearestObjects[[worldSize/2, worldSize/2], [], worldSize*2, false,true];
+}forEach allMissionObjects "All";
 {deleteVehicle _x}forEach allUnits;
 //Load everything
-_inidbi = ["new", _filename] call OO_INIDBI;
 
 //MISSIONDETAILS
-_RworldName = ["read", ["MISSIONDETAILS", "worldName", ""]] call _inidbi;
-if (_RworldName == worldName) then {
 //_RmissionName = ["read", ["MISSIONDETAILS", "missionName", ""]] call _inidbi;
 //_RDate = ["read", ["MISSIONDETAILS", "Date", ""]] call _inidbi;
 setAccTime (["read", ["MISSIONDETAILS", "accTime", 1]] call _inidbi);
@@ -53,42 +56,82 @@ enableStressDamage (["read", ["MISSIONDETAILS", "isStressDamageEnabled", false]]
 
 //buildings
 {
-	if ((_x find "OBJECT")>-1) then {
-		(["read", [_x, "typeOf", ""]] call _inidbi) createVehicle (["read", [_x, "getPos", [0,0,0]]] call _inidbi);
+	if ((_x find "BUILDING")>-1) then {
+		(["read", [_x, "typeOf", ""]] call _inidbi) createVehicle (toArray(["read", [_x, "position", [0,0,0]]] call _inidbi));
 	};
 }forEach ("getSections" call _inidbi);
-{
-	if ((_x find "HIDDEN")>-1) then {
-		hideObjectGlobal (nearestTerrainObjects [(["read", [_x, "getPos", [0,0,0]]] call _inidbi),[(["read", [_x, "typeOf", ""]] call _inidbi)],0.1] select 0);
-	};
-}forEach ("getSections" call _inidbi);
+// {
+// 	if ((_x find "HIDDEN")>-1) then {
+// 		hideObjectGlobal (nearestTerrainObjects [(["read", [_x, "position", [0,0,0]]] call _inidbi),[(["read", [_x, "typeOf", ""]] call _inidbi)],0.1] select 0);
+// 	};
+// }forEach ("getSections" call _inidbi);
+
+//boats
+_counter = 0;
+while {["read", ["BOAT" + str _counter, "typeOf", ""]] call _inidbi != ""} do {
+
+	_RtypeOf = ["read", ["BOAT" + (str _counter), "typeOf", ""]] call _inidbi;
+	hint _RtypeOf;
+	_Rposition = toArray (["read", ["BOAT" + (str _counter), "position", "[0,0,0]"]] call _inidbi);
+	_counter = _counter + 1;
+
+	createVehicle [_RtypeOf, _Rposition, [], 0, "FORM"];
+};
+
+//air
+_counter = 0;
+while {["read", ["AIR" + str _counter, "typeOf", ""]] call _inidbi != ""} do {
+
+	_RtypeOf = ["read", ["AIR" + (str _counter), "typeOf", ""]] call _inidbi;
+	hint _RtypeOf;
+	_Rposition = toArray (["read", ["AIR" + (str _counter), "position", "[0,0,0]"]] call _inidbi);
+	_Rspecial = (["read", ["AIR" + (str _counter), "special", "FORM"]] call _inidbi);
+	_counter = _counter + 1;
+
+	createVehicle [_RtypeOf, _Rposition, [], 0, _Rspecial];
+};
 
  
+
+//cars
+_counter = 0;
+while {["read", ["CAR" + str _counter, "typeOf", ""]] call _inidbi != ""} do {
+
+	_RtypeOf = ["read", ["CAR" + (str _counter), "typeOf", ""]] call _inidbi;
+	hint _RtypeOf;
+	_Rposition = toArray (["read", ["CAR" + (str _counter), "position", "[0,0,0]"]] call _inidbi);
+	_counter = _counter + 1;
+
+	createVehicle [_RtypeOf, _Rposition, [], 0, "FORM"];
+};
+
 //units
 _counter = 0;
 while {["read", ["UNIT" + str _counter, "typeOf", ""]] call _inidbi != ""} do {
 
 	_RtypeOf = ["read", ["UNIT" + (str _counter), "typeOf", ""]] call _inidbi;
 	hint _RtypeOf;
-	_Rposition = toArray (["read", ["UNIT" + (str _counter), "position", [0,0,0]]] call _inidbi);
+	_Rposition = toArray (["read", ["UNIT" + (str _counter), "position", "[0,0,0]"]] call _inidbi);
 	_counter = _counter + 1;
 
 	_grp = createGroup west;
 	_ap = _grp createUnit [ _RtypeOf, _Rposition, [], 0, "FORM"];
 };
 
-	[true,_Rdate] remoteExec ["Werthles_fnc_MSLLocalUpdates",0];
-	[true] remoteExec ["Werthles_fnc_MSLLoadPlayer",_clientID];
-}
-else
-{
-	[false,"This save was on a different map!"] remoteExec ["Werthles_fnc_MSLLoadPlayer",_clientID];
-};
+[true,_Rdate] remoteExec ["Werthles_fnc_MSLLocalUpdates",0];
+[true] remoteExec ["Werthles_fnc_MSLLoadPlayer",_clientID];
 
 //unsafemode players
 {
 	_x setCaptive false;
 	_x allowDamage true;
 }forEach allPlayers;
+
+}
+else
+{
+	[false,"This save was on a different map!"] remoteExec ["Werthles_fnc_MSLLoadPlayer",_clientID];
+};
+
 
 ["delete", _inidbi] call OO_INIDBI;

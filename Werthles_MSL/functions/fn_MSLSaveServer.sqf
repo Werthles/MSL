@@ -116,40 +116,62 @@ _inidbi = ["new", _saveName] call OO_INIDBI;
 //["write", ["MISSIONDETAILS", "cadetMode", cadetMode]] call _inidbi;
 
 
-//buildings
-_placedObjects = [];
+//hidden buildings
 _hiddenObjects = [];
-{
+//{
 	//placed objects
-	if !(_x in nearestTerrainObjects[_x, [],0.1,false,true]) then
-	{_placedObjects append [_x];};
+	//if !(_x in nearestTerrainObjects[_x, [],0.1,false,true]) then
+	//{_placedObjects pushBack _x;};
 	//hidden map objects
-	if (isObjectHidden _x)  then {
-		_hiddenObjects append [_x];
-	}
-
-}forEach (nearestObjects [[worldSize/2, worldSize/2], ["House"], worldSize*2, false,true]);
-{
-	["write", ["OBJECT" + str _forEachIndex, "typeOf" , typeOf _x]] call _inidbi;
-	["write", ["OBJECT" + str _forEachIndex, "getPos" , getPos _x]] call _inidbi;
-}forEach _placedObjects;
+// 	if (isObjectHidden _x)  then {
+// 		_hiddenObjects pushBack _x;
+// 	}
+// }forEach (nearestObjects [[worldSize/2, worldSize/2], ["Building"], worldSize*2, false,true]);
 {
 	["write", ["HIDDEN" + str _forEachIndex, "typeOf" , typeOf _x]] call _inidbi;
-	["write", ["HIDDEN" + str _forEachIndex, "getPos" , getPos _x]] call _inidbi;
+	["write", ["HIDDEN" + str _forEachIndex, "position" , toString (getPos _x)]] call _inidbi;
 }forEach _hiddenObjects;
 
+//air
+{
+	["write", ["AIR" + str _forEachIndex, "typeOf" , typeOf _x]] call _inidbi;
+	["write", ["AIR" + str _forEachIndex, "position" , toString (getPos _x)]] call _inidbi;
+	["write", ["AIR" + str _forEachIndex, "special" , 
+		["FORM","FLY"] select (((getPos _x) select 2)>5)
+	]] call _inidbi;
+}forEach allMissionObjects "air";
 
+//cars
+{
+	["write", ["CAR" + str _forEachIndex, "typeOf" , typeOf _x]] call _inidbi;
+	["write", ["CAR" + str _forEachIndex, "position" , toString (getPos _x)]] call _inidbi;
+}forEach allMissionObjects "cars";
+
+//boats
+{
+	["write", ["BOAT" + str _forEachIndex, "typeOf" , typeOf _x]] call _inidbi;
+	["write", ["BOAT" + str _forEachIndex, "position" , toString (getPos _x)]] call _inidbi;
+}forEach allMissionObjects "boats";
+
+//buildings
+{
+	["write", ["BUILDING" + str _forEachIndex, "typeOf" , typeOf _x]] call _inidbi;
+	["write", ["BUILDING" + str _forEachIndex, "position" , toString (getPos _x)]] call _inidbi;
+}forEach allMissionObjects "Building";
 
 //units
 {
-	["write", ["UNIT" + (str _forEachIndex), "typeOf", typeOf _x]] call _inidbi;	//className
-	["write", ["UNIT" + (str _forEachIndex), "position", toString (position _x)]] call _inidbi;	//className
+	["write", ["UNIT" + (str _forEachIndex), "typeOf", typeOf _x]] call _inidbi;
+	["write", ["UNIT" + (str _forEachIndex), "position", toString (getPos _x)]] call _inidbi;
 } forEach allUnits;
 
+//local setups
 {
 	[] remoteExec ["Werthles_fnc_MSLLocal",_clientID];
 }forEach allPlayers;
 
-[] remoteExec ["Werthles_fnc_MSLSavePlayer",_clientID];
-
+//close db
 ["delete", _inidbi] call OO_INIDBI;
+
+//save completion
+[] remoteExec ["Werthles_fnc_MSLSavePlayer",_clientID];
