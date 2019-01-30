@@ -163,7 +163,18 @@ _hiddenObjects = [];
 {
 	["write", ["UNIT" + (str _forEachIndex), "typeOf", typeOf _x]] call _inidbi;
 	["write", ["UNIT" + (str _forEachIndex), "position", toString (getPos _x)]] call _inidbi;
+	["write", ["UNIT" + (str _forEachIndex), "leader", (leader _x == _x)]] call _inidbi;
+	_x setVariable ["MSLID",_forEachIndex];
 } forEach allUnits;
+
+//groups
+{
+	_groupID = str _forEachIndex;
+	if (count (units _x) > 0) then {["write", ["GROUP" + _groupID, "side", str (side _x)]] call _inidbi;};
+	{
+		["write", ["GROUP" + _groupID, "unit" + (str _forEachIndex), _x getVariable "MSLID"]] call _inidbi;
+	}forEach units _x;
+}forEach allGroups;
 
 //local setups
 {

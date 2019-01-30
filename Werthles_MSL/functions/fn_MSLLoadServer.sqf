@@ -19,6 +19,8 @@ if (_RworldName == worldName) then {
 	if !((typeOf _x)=="Logic") then {deleteVehicle _x;};
 }forEach allMissionObjects "All";
 {deleteVehicle _x}forEach allUnits;
+{deleteGroup _x;}forEach allGroups;
+
 //Load everything
 
 //MISSIONDETAILS
@@ -72,7 +74,7 @@ while {["read", ["BOAT" + str _counter, "typeOf", ""]] call _inidbi != ""} do {
 
 	_RtypeOf = ["read", ["BOAT" + (str _counter), "typeOf", ""]] call _inidbi;
 	hint _RtypeOf;
-	_Rposition = toArray (["read", ["BOAT" + (str _counter), "position", "[0,0,0]"]] call _inidbi);
+	_Rposition = toArray (["read", ["BOAT" + (str _counter), "position", ""]] call _inidbi);
 	_counter = _counter + 1;
 
 	createVehicle [_RtypeOf, _Rposition, [], 0, "FORM"];
@@ -84,7 +86,7 @@ while {["read", ["AIR" + str _counter, "typeOf", ""]] call _inidbi != ""} do {
 
 	_RtypeOf = ["read", ["AIR" + (str _counter), "typeOf", ""]] call _inidbi;
 	hint _RtypeOf;
-	_Rposition = toArray (["read", ["AIR" + (str _counter), "position", "[0,0,0]"]] call _inidbi);
+	_Rposition = toArray (["read", ["AIR" + (str _counter), "position", ""]] call _inidbi);
 	_Rspecial = (["read", ["AIR" + (str _counter), "special", "FORM"]] call _inidbi);
 	_counter = _counter + 1;
 
@@ -99,24 +101,63 @@ while {["read", ["CAR" + str _counter, "typeOf", ""]] call _inidbi != ""} do {
 
 	_RtypeOf = ["read", ["CAR" + (str _counter), "typeOf", ""]] call _inidbi;
 	hint _RtypeOf;
-	_Rposition = toArray (["read", ["CAR" + (str _counter), "position", "[0,0,0]"]] call _inidbi);
+	_Rposition = toArray (["read", ["CAR" + (str _counter), "position", ""]] call _inidbi);
 	_counter = _counter + 1;
 
 	createVehicle [_RtypeOf, _Rposition, [], 0, "FORM"];
 };
 
-//units
+//groups
 _counter = 0;
-while {["read", ["UNIT" + str _counter, "typeOf", ""]] call _inidbi != ""} do {
+while {["read", ["GROUP" + (str _counter), "side", ""]] call _inidbi != ""} do {
+	_grp = createGroup civilian;
+	_dummy = objNull;
+	switch (["read", ["GROUP" + (str _counter), "side", ""]] call _inidbi) do {
+		case "WEST": { _grp = createGroup west;
+			_dummy = _grp createUnit ["B_Soldier_VR_F",[worldSize/2,worldSize/2,0],[],worldSize/2,"NONE"];
+			[_dummy] joinSilent _grp;
+		};
+		case "EAST": { _grp = createGroup east;
+			_dummy = _grp createUnit ["O_Soldier_VR_F",[worldSize/2,worldSize/2,0],[],worldSize/2,"NONE"];
+			[_dummy] joinSilent _grp;
+		};
+		case "GUER": { _grp = createGroup resistance;
+			_dummy = _grp createUnit ["I_Soldier_VR_F",[worldSize/2,worldSize/2,0],[],worldSize/2,"NONE"];
+			[_dummy] joinSilent _grp;
+		};
+		case "CIV": { _grp = createGroup civilian;
+			_dummy = _grp createUnit ["C_Soldier_VR_F",[worldSize/2,worldSize/2,0],[],worldSize/2,"NONE"];
+			[_dummy] joinSilent _grp;
+		};
+		default {_grp = createGroup west;
+			_dummy = _grp createUnit ["B_Soldier_VR_F",[worldSize/2,worldSize/2,0],[],worldSize/2,"NONE"];
+			[_dummy] joinSilent _grp;
+		};
 
-	_RtypeOf = ["read", ["UNIT" + (str _counter), "typeOf", ""]] call _inidbi;
-	hint _RtypeOf;
-	_Rposition = toArray (["read", ["UNIT" + (str _counter), "position", "[0,0,0]"]] call _inidbi);
+	};
+
+	//units in group
+	_counter2 = 0;
+	while {(["read", ["GROUP" + (str _counter),"unit" + str _counter2, -1]] call _inidbi) != -1} do {
+		_MSLID = str (["read", ["GROUP" + (str _counter),"unit" + str _counter2, -1]] call _inidbi);
+		_nextUnit = _grp createUnit [
+			["read", ["UNIT" + _MSLID, "typeOf", ""]] call _inidbi,
+			toArray (["read", ["UNIT" + _MSLID, "position", ""]] call _inidbi),
+			[],0,"NONE"
+		];
+		if ((["read", ["UNIT" + _MSLID, "leader", false]] call _inidbi)) then {
+			[_grp, _nextUnit] remoteExec ["selectLeader", groupOwner _grp];
+		};
+		//hint (["read", ["UNIT" + _MSLID, "typeOf", ""]] call _inidbi);
+		//sleep 1;
+		_counter2 = _counter2 + 1;
+	};
 	_counter = _counter + 1;
-
-	_grp = createGroup west;
-	_ap = _grp createUnit [ _RtypeOf, _Rposition, [], 0, "FORM"];
+	deleteVehicle _dummy;
 };
+
+
+
 
 [true,_Rdate] remoteExec ["Werthles_fnc_MSLLocalUpdates",0];
 [true] remoteExec ["Werthles_fnc_MSLLoadPlayer",_clientID];
