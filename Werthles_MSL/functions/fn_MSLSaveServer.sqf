@@ -167,6 +167,7 @@ _hiddenObjects = [];
 	_x setVariable ["MSLID",_forEachIndex];
 } forEach allUnits;
 
+
 //groups
 {
 	_groupID = str _forEachIndex;
