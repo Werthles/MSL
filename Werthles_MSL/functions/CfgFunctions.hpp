@@ -8,7 +8,7 @@ class CfgFunctions
 			//tag = "Werthles";
 			// call the function upon mission start, after objects are initialized.
 			file = "\Werthles_MSL\functions";
-			class MSLpostInit
+			class MSLPostInit
 			{
 				postInit = 1;
 			};
@@ -26,6 +26,7 @@ class CfgFunctions
 			class MSLSavePlayer{};
 			class MSLLocalUpdates{};
 			class MSLHint{};
+			class MSLChangeSlot{};
 		};
 	};
 };

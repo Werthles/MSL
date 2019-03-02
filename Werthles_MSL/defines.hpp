@@ -187,7 +187,7 @@
 //Base Classes//
 ////////////////
 
-class TargetText
+class MSLTargetText
 {
 	style = 18;
 	SizeEx = 0.035;
@@ -206,7 +206,7 @@ class TargetText
     h = 0;
     w = 0;
 };
-class MissionText
+class MSLMissionText
 {
 	style = 82;
 	SizeEx = 0.035;
@@ -225,133 +225,7 @@ class MissionText
     h = 0;
     w = 0;
 };
-class QuadSelected
-{
-	style = 2096;
-	colorText[] = {0.1,0.1,1,1};
-    access = 0;
-    idc = -1;
-    type = CT_STATIC;
-    colorBackground[] = {0,0,0,0};
-    font = "PuristaLight";
-    sizeEx = 0;
-    lineSpacing = 0;
-    text = "";
-    fixedWidth = 0;
-    shadow = 0;
-    x = 0;
-    y = 0;
-    w = 0.2;
-    h = 0.15;
-};
-class QuadButton
-{
-	style = 2096;
-    access = 0;
-    type = CT_BUTTON;
-    text = "";
-    colorText[] = {1,1,1,0.95};
-    colorDisabled[] = {0,0,0,0};
-	colorBackground[] = {1,1,1,0};
-	colorBackgroundDisabled[] = {1,1,1,0};
-	colorBackgroundActive[] = {1,1,1,0};
-    colorFocused[] = {0,0,0,0};
-    colorShadow[] = {0,0,0,0};
-    colorBorder[] = {0,0,0,0};
-    soundEnter[] = {"\a3\ui_f\data\sound\RscButtonMenu\soundEnter.wss",0.3,1};
-    soundPush[] = {"\a3\ui_f\data\sound\RscButtonMenuOK\soundPush.wss",0.3,1};
-    soundClick[] = {"\a3\ui_f\data\sound\RscButtonMenu\soundClick.wss",0.3,1};
-    soundEscape[] = {"\a3\ui_f\data\sound\RscButtonMenu\soundEscape.wss",0.3,1};
-    x = 0;
-    y = 0;
-    w = 0.0;
-    h = 0.0;
-    shadow = 0;
-    font = "PuristaBold";
-    sizeEx = 0.055;
-    offsetX = 0;
-    offsetY = 0;
-    offsetPressedX = 0;
-    offsetPressedY = 0;
-    borderSize = 0;
-	fadein = 0.1;
-	fadeout = 0.1;
-	onMouseEnter = "(_this select 0) ctrlSetTextColor [0.1,0.1,1,1];";
-	onMouseExit = "(_this select 0) ctrlSetTextColor [1,1,1,1];";
-};
-class SideButton
-{
-    access = 0;
-    type = CT_BUTTON;
-    text = "";
-    colorText[] = {1,1,1,0.95};
-    colorDisabled[] = {0,0,0,0};
-    colorBackground[] = {1,1,1,0.2};
-    colorBackgroundDisabled[] = {1,1,1,0.2};
-    colorBackgroundActive[] = {1,1,1,0.35};
-    colorFocused[] = {0,0,0,0};
-    colorShadow[] = {0,0,0,0};
-    colorBorder[] = {0,0,0,0};
-    soundEnter[] = {"\a3\ui_f\data\sound\RscButtonMenu\soundEnter.wss",0.3,1};
-    soundPush[] = {"\a3\ui_f\data\sound\RscButtonMenuOK\soundPush.wss",0.3,1};
-    soundClick[] = {"\a3\ui_f\data\sound\RscButtonMenu\soundClick.wss",0.3,1};
-    soundEscape[] = {"\a3\ui_f\data\sound\RscButtonMenu\soundEscape.wss",0.3,1};
-	style = 98;
-    x = 0;
-    y = 0;
-    w = 0.0;
-    h = 0.0;
-    shadow = 0;
-    font = "PuristaBold";
-    sizeEx = 0.055;
-    offsetX = 0;
-    offsetY = 0;
-    offsetPressedX = 0;
-    offsetPressedY = 0;
-    borderSize = 0;
-	fadein = 0.1;
-	fadeout = 0.1;
-	onMouseEnter = "(_this select 0) ctrlSetTextColor [0.1,0.1,1,1];";
-	onMouseExit = "(_this select 0) ctrlSetTextColor [1,1,1,1];";
-};
-class MissionButton
-{
-	//style = 18;
-	SizeEx = 0.035;
-	lineSpacing = 1;
-    access = 0;
-    type = CT_BUTTON;
-    text = "";
-    colorText[] = {1,1,1,0.95};
-    colorDisabled[] = {0,0,0,0};
-    colorBackground[] = {117/256,117/256,102/256,0.2};
-    colorBackgroundDisabled[] = {117/256,117/256,102/256,0.2};
-    colorBackgroundActive[] = {117/256,117/256,102/256,0.35};
-    colorFocused[] = {0.05,0.05,00,0};
-    colorShadow[] = {0.05,0.05,0,0};
-    colorBorder[] = {0.05,0.05,0,0};
-    soundEnter[] = {"\a3\ui_f\data\sound\RscButtonMenu\soundEnter.wss",0.3,1};
-    soundPush[] = {"\a3\ui_f\data\sound\RscButtonMenu\soundPush.wss",0.3,1};
-    soundClick[] = {"\a3\ui_f\data\sound\RscButtonMenu\soundClick.wss",0.3,1};
-    soundEscape[] = {"\a3\ui_f\data\sound\RscButtonMenu\soundEscape.wss",0.3,1};
-    style = 82;
-    x = 0;
-    y = 0;
-    w = 0.0;
-    h = 0.0;
-    shadow = 1;
-    font = "PuristaBold";
-    offsetX = 0;
-    offsetY = 0;
-    offsetPressedX = 0;
-    offsetPressedY = 0;
-    borderSize = 0.5;
-	fadein = 0.1;
-	fadeout = 0.1;
-	onMouseEnter = "(_this select 0) ctrlSetTextColor [0.8,0.9,1,0.95];";
-	onMouseExit = "(_this select 0) ctrlSetTextColor [1,1,1,0.95];";
-};
-class Background
+class MSLBackground
 {
     type = CT_STATIC;
     idc = -1;
@@ -363,55 +237,7 @@ class Background
 	style = 82;
 	colorBackground[] = {0.05,0.05,0,0.7};
 };
-class RscPicture {
-	type = 0;
-	idc = -1;
-	style = 48;
-    font = "PuristaLight";
-	colorText[] = {0.75, 0.75, 0.75, 1};
-	colorBackground[] = {0, 0, 0, 0};
-	sizeEx = 0.025;
-	soundClick[] = {"ui\ui_ok", 0.2, 1};
-	soundEnter[] = {"ui\ui_over", 0.2, 1};
-	soundEscape[] = {"ui\ui_cc", 0.2, 1};
-	soundPush[] = {"", 0.2, 1};
-	w = 0.275;
-	h = 0.04;
-	text = "";
-};
-class MoneyListBox {
-	idc = -1;
-	type = 5;
-	style = 0 + 0x10;
-    font = "PuristaLight";
-	sizeEx = 0.04221;
-    rowHeight = 0.03;
-	color[] = {1, 1, 1, 1};
-	colorText[] = {1, 1, 1, 0.75};
-	colorScrollbar[] = {0.95, 0.95, 0.95, 1};
-	colorSelect[] = {0.95, 0.95, 0.95, 1};
-	colorSelect2[] = {0.95, 0.95, 0.95, 1};
-	colorSelectBackground[] = {0.6, 0.8392, 0.4706, 1.0};
-	colorSelectBackground2[] = {0.6, 0.8392, 0.4706, 1.0};
-	columns[] = {0.1, 0.7, 0.1, 0.1};
-	period = 0;
-	colorBackground[] = {0, 0, 0, 1};
-	maxHistoryDelay = 1.0;
-	autoScrollSpeed = -1;
-	autoScrollDelay = 5;
-	autoScrollRewind = 0;
-	
-	class ScrollBar {
-		color[] = {1, 1, 1, 0.6};
-		colorActive[] = {1, 1, 1, 1};
-		colorDisabled[] = {1, 1, 1, 0.3};
-		thumb = "\A3\ui_f\data\IGUI\cfg\actions\arrow_up_gs.paa";
-		arrowFull = "\A3\ui_f\data\IGUI\cfg\actions\arrow_up_gs.paa";
-		arrowEmpty = "\A3\ui_f\data\IGUI\cfg\actions\arrow_up_gs.paa";
-		border = "\A3\ui_f\data\IGUI\cfg\actions\arrow_up_gs.paa";
-	};
-};
-class RscFrame
+class MSLRscFrame
 {
     type = CT_CONTEXT_MENU;
     idc = -1;
@@ -423,7 +249,7 @@ class RscFrame
 	style = 82;
 	colorBackground[] = {0.05,0.05,0,0.7};
 };
-class RscListbox
+class MSLRscListbox
 {
     type = CT_LISTBOX;
     idc = -1;
@@ -469,7 +295,7 @@ class RscListbox
 		color[] = {1,1,1,0.5}; // Scrollbar color
 	};
 };
-class RscButton
+class MSLRscButton
 {
     type = CT_BUTTON;
     idc = -1;
@@ -503,7 +329,7 @@ class RscButton
 	colorText[] = {1, 1, 1, 0.75};
 	colorActive[] = {0.4, 1, 0.4, 0.5};
 };
-class RscText
+class MSLRscText
 {
 	style = 82;
 	SizeEx = 0.035;
@@ -521,4 +347,49 @@ class RscText
     y = 0;
     h = 0;
     w = 0;
+};
+class MSLRscCheckbox
+{
+	style = 82;
+	SizeEx = 0.035;
+	lineSpacing = 0.2;
+    access = 0;
+    idc = -1;
+    type = CT_CHECKBOXES;
+    
+	colorSelectedBg[] = {0, 0, 0, 0.5}; 
+
+	colorText[] = {0, 0.7, 0, 1}; 
+	colorTextSelect[] = {0, 0.7, 0, 1}; 
+
+	colorBackground[] = {0, 0, 0, 0.5}; 
+	
+	font = "PuristaLight";
+};
+class MSLRscProgress
+{
+	type = CT_PROGRESS;
+	style = 82;
+    colorBackground[] = {1,0.05,0,0.15};
+    colorText[] = {1,1,1,1};
+    colorFrame[] = {0,0,0,1};
+    colorBar[] = {1,1,1,1};
+    texture = "#(argb,8,8,3)color(1,1,1,1)";
+};
+class MSLRscEdit
+{
+	idc = -1;
+	type = CT_EDIT;
+	style = 82;
+	font = "PuristaLight";
+	SizeEx = 0.035;
+	autocomplete = "";
+	canModify = true; 
+	maxChars = 50; 
+	forceDrawCaret = false;
+	colorSelection[] = {0,1,0,1};
+	colorText[] = {1,1,1,1};
+	colorDisabled[] = {1,0,0,1}; 
+	colorBackground[] = {0,0,0,0.5}; 
+	text = "";
 };

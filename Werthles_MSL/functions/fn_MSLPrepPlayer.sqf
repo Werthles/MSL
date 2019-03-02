@@ -1,4 +1,6 @@
-hint "Playerprep";
+private ["_control", "_lbID", "_rankArray"];
+
+//hint "Playerprep";
 //player setPos [5000,5000,500];
 params [["_missionNames",[],[[]]]];
 

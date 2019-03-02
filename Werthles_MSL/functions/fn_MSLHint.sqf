@@ -1,3 +1,5 @@
+
+
 //executes on human clients
 //function called on server with BIS_fnc_MP
 //displays formatted text info regarding module functions and unit locality
@@ -6,7 +8,7 @@
 params [["_hintType",-1,[1]],["_hintParams",[],[[]]]];
 
 //private variables
-private ["_lineString", "_breakString", "_debugString", "_hintArray", "_hintParams1", "_hintParams2", "_stringInfo1", "_stringInfo2", "_stringInfo3", "_stringInfo4", "_strTransfers", "_strRecurrent"];
+private ["_lineString", "_breakString", "_debugString", "_hintArray"];
 
 _lineString = parseText "<t color='#C5C1AA' align='center'>--------------------------------------------------</t>";
 _breakString = parseText "<br/>";

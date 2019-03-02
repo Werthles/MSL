@@ -20,7 +20,8 @@ class CfgRemoteExec
 		class Werthles_fnc_MSLSavePlayer{allowedTargets = 0;};
 		class Werthles_fnc_MSLLocalUpdates{allowedTargets = 0;};
 		class Werthles_fnc_MSLHint{allowedTargets = 0;};
-		
+		class Werthles_fnc_MSLChangeSlot{allowedTargets = 0;};
+		class Werthles_fnc_MSLPostInit{allowedTargets = 0;};
 		//class Werthles_fnc_WHKDebugAddAction{};
 		//class Werthles_fnc_WHKDiaryEntries{};
 		//class Werthles_fnc_WHKDebugLoop{};
