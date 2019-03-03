@@ -1,16 +1,20 @@
-private ["_inidbi", "_RworldName", "_bus", "_RmissionName", "_RDate", "_Rdate", "_RwindDir", "_RfogForecast", "_Rgusts", "_RnextWeatherChange", "_RgetMissionDLCs", "_RtoStringdiag_activeSQFScripts", "_RcadetMode", "_building", "_counter", "_RtypeOf", "_Rposition", "_boat", "_Rspecial", "_air", "_car", "_grp", "_dummy", "_counter2", "_MSLID", "_ddd", "_damageArray", "_eee", "_counter3", "_wp", "_wpsToSync", "_groupIdToSync", "_wpNumToSync", "_playerList", "_playerList2", "_playerList3", "_playerCount", "_unitsOnBuses", "_i", "_del", "_counter4", "_trigger", "_objArray", "_attObj", "_counter5", "_marker", "_counter6", "_unitMSLNames", "_counter7", "_trigStatements", "_logicCenter", "_counter8", "_logic", "_logicGroup", "_units"];
+private ["_inidbi", "_RworldName", "_bus", "_RmissionName", "_RDate", "_Rdate", "_RwindDir", "_RfogForecast", "_Rgusts", "_RnextWeatherChange", "_RgetMissionDLCs", "_RtoStringdiag_activeSQFScripts", "_RcadetMode", "_building", "_counter", "_RtypeOf", "_Rposition", "_boat", "_Rspecial", "_air", "_car", "_grp", "_dummy", "_counter2", "_MSLID", "_ddd", "_damageArray", "_eee", "_counter3", "_wp", "_wpsToSync", "_groupIdToSync", "_wpNumToSync", "_playerList", "_playerList2", "_playerList3", "_playerCount", "_unitsOnBuses", "_i", "_del", "_counter4", "_trigger", "_objArray", "_attObj", "_counter5", "_marker", "_counter6", "_unitMSLNames", "_counter7", "_trigStatements", "_logicCenter", "_counter8", "_logic", "_logicGroup", "_units", "_vehicles"];
 
 //hint "Serverload";
-//player setPos [1000,1000,1000];
+//params
 params [["_clientID",-2,[0]],["_filename","filename",[""]],["_hiddenCheck",false,[false]],["_serverTriggerCheck",false,[false]]];
 
+//inidbi2 setup
 _inidbi = ["new", _filename] call OO_INIDBI;
 _RworldName = ["read", ["MISSIONDETAILS", "worldName", ""]] call _inidbi;
 
+//reset progress bar tracking variable
 MSLPROGRESS = 0;
 publicVariable "MSLPROGRESS";
 
+//only load if mission was saved on the same map
 if (_RworldName == worldName) then {
+
 //safemode players
 {
 	_x setCaptive true;
@@ -22,7 +26,7 @@ if (_RworldName == worldName) then {
 //	if !((typeOf _x)=="Logic") then {deleteVehicle _x;};
 //} forEach nearestObjects[[worldSize/2, worldSize/2], [], worldSize*2, false,true];
 
-//delete tasks
+//delete tasks - will this always delete all tasks?
 {
 	{
 		_x call BIS_fnc_deleteTask;
@@ -36,15 +40,19 @@ if (_RworldName == worldName) then {
 	//_x setVariable ["MSLPlayer", nil];
 	//_x setVariable ["MSLPlayable", nil];
 	deleteVehicle _x;
-}forEach (((((allMissionObjects "All") - allUnits) - MSLBUSES) - (allMissionObjects "Logic")) + (allMissionObjects "ModuleTaskCreate_F") + (allMissionObjects "ModuleTaskSetState_F") + (allMissionObjects "emptyDetector"));
+}forEach ((((((allMissionObjects "All") - allUnits) - MSLBUSES) - (allMissionObjects "Logic")) - (entities "HeadlessClient_F")) + (allMissionObjects "ModuleTaskCreate_F") + (allMissionObjects "ModuleTaskSetState_F") + (allMissionObjects "emptyDetector"));
+
+//confirm trigger delete
 {
 	deleteVehicle _x;
 }forEach allMissionObjects "emptyDetector";
+
+//if unit was previously playable, or is playable/player, keep the unit
 {
 	_bus = objNull;
-	if ((_x getVariable["MSLPlayable",false])) then {
+	if ((_x getVariable["MSLPlayable",false]) or (isPlayer _x) or (_x in allPlayers) or (_x in playableUnits)) then {
 		{
-			if (count (crew (_x))<18) exitWith {
+			if ((count (crew (_x)))<18) exitWith {
 				_bus = _x;
 			};
 		} forEach MSLBUSES;
@@ -53,9 +61,12 @@ if (_RworldName == worldName) then {
 	else {
 		deleteVehicle _x;
 	};
-}forEach (allUnits - MSLBUSES);
-{deleteGroup _x;}forEach allGroups;
+}forEach (allUnits - MSLBUSES - (entities "HeadlessClient_F"));
 
+//confirm empty groups will be deleted
+{ [_x, true] remoteExec ["deleteGroupWhenEmpty", 0];}forEach allGroups;
+
+//increment progress
 MSLPROGRESS = 0.1;
 publicVariable "MSLPROGRESS";
 
@@ -94,6 +105,7 @@ independent setFriend [civilian,(["read", ["MISSIONDETAILS", "independentgetFrie
 enableStressDamage (["read", ["MISSIONDETAILS", "isStressDamageEnabled", false]] call _inidbi);
 //_RcadetMode = ["read", ["MISSIONDETAILS", "cadetMode", true]] call _inidbi;
 
+//increment progress
 MSLPROGRESS = 0.2;
 publicVariable "MSLPROGRESS";
 
@@ -103,7 +115,7 @@ publicVariable "MSLPROGRESS";
 		_building = (["read", [_x, "typeOf", ""]] call _inidbi) createVehicle (toArray(["read", [_x, "position", [0,0,0]]] call _inidbi));
 		{
 			_building setVariable[_x select 0,_x select 1];
-		} forEach (["read", [_x, "allVars", ""]] call _inidbi);
+		} forEach (["read", [_x, "allVars", []]] call _inidbi);
 		_building setVectorDir (["read", [_x, "vectorDir", [0,0,0]]] call _inidbi);
 		_building setVectorUp (["read", [_x, "vectorUp", [0,0,0]]] call _inidbi);
 		_building setVariable ["MSLID", parseNumber (_x select [8])];
@@ -119,27 +131,6 @@ publicVariable "MSLPROGRESS";
 }forEach ("getSections" call _inidbi);
 
 _vehicles = [];
-//boats
-_counter = 0;
-while {["read", ["BOAT" + (str _counter), "typeOf", ""]] call _inidbi != ""} do {
-
-	_RtypeOf = ["read", ["BOAT" + (str _counter), "typeOf", ""]] call _inidbi;
-	_Rposition = toArray (["read", ["BOAT" + (str _counter), "position", ""]] call _inidbi);
-
-	_boat = createVehicle [_RtypeOf, _Rposition, [], 0, "FORM"];
-	_boat enableSimulationGlobal false;
-	_boat setVectorDir (["read", ["BOAT" + (str _counter), "vectorDir", [0,0,0]]] call _inidbi);
-	_boat setVectorUp (["read", ["BOAT" + (str _counter), "vectorUp", [0,0,0]]] call _inidbi);
-	
-	{
-		_boat setVariable[_x select 0,_x select 1];
-	} forEach (["read", ["BOAT" + (str _counter), "allVars", ""]] call _inidbi);
-	_boat setVariable ["MSLID", _counter];
-	_boat setVariable ["MSLName", "BOAT" + (str _counter)];
-
-	_vehicles pushBack _boat;
-	_counter = _counter + 1;
-};
 
 //air
 _counter = 0;
@@ -150,14 +141,15 @@ while {["read", ["AIR" + (str _counter), "typeOf", ""]] call _inidbi != ""} do {
 	_Rspecial = (["read", ["AIR" + (str _counter), "special", "FORM"]] call _inidbi);
 
 	_air = createVehicle [_RtypeOf, _Rposition, [], 0, _Rspecial];
-	_air enableSimulationGlobal false;
+	//_air enableSimulationGlobal false;
 	_air setVectorDir (["read", ["AIR" + (str _counter), "vectorDir", [0,0,0]]] call _inidbi);
 	_air setVectorUp (["read", ["AIR" + (str _counter), "vectorUp", [0,0,0]]] call _inidbi);
 	_air setVehicleVarName (["read", ["AIR" + (str _counter), "vehicleVarName", ""]] call _inidbi);
+missionNamespace setVariable ["AIR" + (str _counter), _air, true];
 	
 	{
 		_air setVariable[_x select 0,_x select 1];
-	} forEach (["read", ["AIR" + (str _counter), "allVars", ""]] call _inidbi);
+	} forEach (["read", ["AIR" + (str _counter), "allVars", []]] call _inidbi);
 	_air setVariable ["MSLID", _counter];
 	_air setVariable ["MSLName", "AIR" + (str _counter)];
 
@@ -173,13 +165,13 @@ while {(["read", ["CAR" + (str _counter), "typeOf", ""]] call _inidbi) != ""} do
 	_Rposition = toArray (["read", ["CAR" + (str _counter), "position", ""]] call _inidbi);
 
 	_car = createVehicle [_RtypeOf, _Rposition, [], 0, "FORM"];
-	_car enableSimulationGlobal false;
+	//_car enableSimulationGlobal false;
 	_car setVectorDir (["read", ["CAR" + (str _counter), "vectorDir", [0,0,0]]] call _inidbi);
 	_car setVectorUp (["read", ["CAR" + (str _counter), "vectorUp", [0,0,0]]] call _inidbi);
 	
 	{
 		_car setVariable[_x select 0,_x select 1];
-	} forEach (["read", ["CAR" + (str _counter), "allVars", ""]] call _inidbi);
+	} forEach (["read", ["CAR" + (str _counter), "allVars", []]] call _inidbi);
 	_car setVariable ["MSLID", _counter];
 	_car setVariable ["MSLName", "CAR" + (str _counter)];
 
@@ -187,6 +179,29 @@ while {(["read", ["CAR" + (str _counter), "typeOf", ""]] call _inidbi) != ""} do
 	_counter = _counter + 1;
 };
 
+//boats
+_counter = 0;
+while {["read", ["BOAT" + (str _counter), "typeOf", ""]] call _inidbi != ""} do {
+
+	_RtypeOf = ["read", ["BOAT" + (str _counter), "typeOf", ""]] call _inidbi;
+	_Rposition = toArray (["read", ["BOAT" + (str _counter), "position", ""]] call _inidbi);
+
+	_boat = createVehicle [_RtypeOf, _Rposition, [], 0, "FORM"];
+	//_boat enableSimulationGlobal false;
+	_boat setVectorDir (["read", ["BOAT" + (str _counter), "vectorDir", [0,0,0]]] call _inidbi);
+	_boat setVectorUp (["read", ["BOAT" + (str _counter), "vectorUp", [0,0,0]]] call _inidbi);
+	
+	{
+		_boat setVariable[_x select 0,_x select 1];
+	} forEach (["read", ["BOAT" + (str _counter), "allVars", []]] call _inidbi);
+	_boat setVariable ["MSLID", _counter];
+	_boat setVariable ["MSLName", "BOAT" + (str _counter)];
+
+	_vehicles pushBack _boat;
+	_counter = _counter + 1;
+};
+
+//increment progress
 MSLPROGRESS = 0.3;
 publicVariable "MSLPROGRESS";
 
@@ -220,7 +235,7 @@ while {["read", ["GROUP" + (str _counter), "side", ""]] call _inidbi != ""} do {
 	
 	{
 		_grp setVariable[_x select 0,_x select 1];
-	} forEach (["read", ["GROUP" + (str _counter), "allVars", ""]] call _inidbi);
+	} forEach (["read", ["GROUP" + (str _counter), "allVars", []]] call _inidbi);
 	_grp setVariable ["MSLID", _counter];
 	_grp setVariable ["MSLName", "GROUP" + (str _counter)];
 
@@ -242,7 +257,7 @@ while {["read", ["GROUP" + (str _counter), "side", ""]] call _inidbi != ""} do {
 		//MSLIDs
 		{
 			MSLnewUnit setVariable[_x select 0,_x select 1];
-		} forEach (["read", ["UNIT" + _MSLID, "allVars", ""]] call _inidbi);
+		} forEach (["read", ["UNIT" + _MSLID, "allVars", []]] call _inidbi);
 		MSLnewUnit setVariable ["MSLID", _MSLID];
 		MSLnewUnit setVariable ["MSLName", "UNIT" + _MSLID];
 
@@ -305,6 +320,7 @@ while {["read", ["GROUP" + (str _counter), "side", ""]] call _inidbi != ""} do {
 		MSLnewUnit setUnitPos (["read", ["UNIT" + _MSLID, "stance", ""]] call _inidbi);
 
 		MSLnewUnit setVehicleVarName (["read", ["UNIT" + _MSLID, "vehicleVarName", ""]] call _inidbi);
+missionNamespace setVariable ["UNIT" + _MSLID, MSLnewUnit, true];
 		MSLnewUnit setVectorDir (["read", ["UNIT" + _MSLID, "vectorDir", ""]] call _inidbi);
 		MSLnewUnit setVectorUp (["read", ["UNIT" + _MSLID, "vectorUp", ""]] call _inidbi);
 		MSLnewUnit setDamage (["read", ["UNIT" + _MSLID, "damage", 0]] call _inidbi);
@@ -354,7 +370,12 @@ while {["read", ["GROUP" + (str _counter), "side", ""]] call _inidbi != ""} do {
 		_wp setWaypointFormation (["read", ["GROUP" + (str _counter),"waypointFormation" + (str _counter3), ""]] call _inidbi);
 		_wp setWaypointSpeed (["read", ["GROUP" + (str _counter),"waypointSpeed" + (str _counter3), ""]] call _inidbi);
 		_wp setWaypointType (["read", ["GROUP" + (str _counter),"waypointType" + (str _counter3), ""]] call _inidbi);
-		_wp setWaypointVisible (["read", ["GROUP" + (str _counter),"waypointVisible" + (str _counter3), ""]] call _inidbi);
+		if (_counter3 == 0) then {
+			_wp setWaypointVisible false;
+		} else {
+			_wp setWaypointVisible (["read", ["GROUP" + (str _counter),"waypointVisible" + (str _counter3), ""]] call _inidbi);
+		};
+		
 		_wp setWaypointLoiterRadius (["read", ["GROUP" + (str _counter),"waypointLoiterRadius" + (str _counter3), ""]] call _inidbi);
 		_wp setWaypointLoiterType (["read", ["GROUP" + (str _counter),"waypointLoiterType" + (str _counter3), ""]] call _inidbi);
 		//_wp waypointAttachVehicle (["read", ["GROUP" + (str _counter),"waypointAttachedVehicle" + (str _counter3), ""]] call _inidbi);
@@ -465,12 +486,12 @@ while {_playerCount >0} do {
 	MSLnewUnit = nil;
 	_playerCount = _playerCount - 1;
 };
-{
-	_x enableSimulationGlobal true;
-	{
-		_x enableSimulationGlobal true;
-	} forEach (crew _x);
-} forEach (_vehicles);
+// {
+// 	_x enableSimulationGlobal true;
+// 	{
+// 		_x enableSimulationGlobal true;
+// 	} forEach (crew _x);
+// } forEach (_vehicles);
 
 	
 MSLPROGRESS = 0.5;
@@ -489,6 +510,7 @@ _serverTriggerCheck
 
 	_trigger setTriggerStatements (["read", ["TRIGGER" + (str _counter4),"triggerStatements", ""]] call _inidbi);
 	_trigger setVehicleVarName (["read", ["TRIGGER" + (str _counter4),"vehicleVarName", ""]] call _inidbi);
+missionNamespace setVariable ["TRIGGER" + (str _counter4), _trigger, true];
 	_trigger setTriggerText (["read", ["TRIGGER" + (str _counter4),"triggerText", ""]] call _inidbi);
 	_trigger setTriggerArea ((["read", ["TRIGGER" + (str _counter4),"triggerArea", ""]] call _inidbi));
 	_trigger setTriggerTimeout (["read", ["TRIGGER" + (str _counter4),"triggerTimeout", ""]] call _inidbi);
@@ -559,7 +581,7 @@ _serverTriggerCheck
 	//vars
 	{
 		_trigger setVariable[_x select 0,_x select 1];
-	} forEach (["read", ["TRIGGER" + (str _counter4), "allVars", ""]] call _inidbi);
+	} forEach (["read", ["TRIGGER" + (str _counter4), "allVars", []]] call _inidbi);
 	_trigger setVariable ["MSLID", _counter4];
 	_trigger setVariable ["MSLName", "TRIGGER" + (str _counter4)];
 
@@ -577,17 +599,24 @@ while {(["read", ["MARKER" + (str _counter5), "markerType", ""]] call _inidbi)!=
 		toArray (["read", ["MARKER" + (str _counter5), "markerPos", ""]] call _inidbi)
 	];
 
-	_marker setMarkerType (["read", ["MARKER" + (str _counter5),"markerType", ""]] call _inidbi);
+	if (((["read", ["MARKER" + (str _counter5),"markerType", ""]] call _inidbi) == "RECTANGLE") or ((["read", ["MARKER" + (str _counter5),"markerType", ""]] call _inidbi) == "ELLIPSE")) then {
+		_marker setMarkerType "";
+	} else {
+		_marker setMarkerType (["read", ["MARKER" + (str _counter5),"markerType", ""]] call _inidbi);
+	};
+	
+	_marker setMarkerShape (["read", ["MARKER" + (str _counter5),"markerShape", ""]] call _inidbi);
 	_marker setMarkerText (["read", ["MARKER" + (str _counter5),"markerText", ""]] call _inidbi);
 	_marker setMarkerSize (["read", ["MARKER" + (str _counter5),"markerSize", ""]] call _inidbi);
 	_marker setMarkerDir (["read", ["MARKER" + (str _counter5),"markerDir", ""]] call _inidbi);
 	_marker setMarkerBrush (["read", ["MARKER" + (str _counter5),"markerBrush", ""]] call _inidbi);
 	_marker setMarkerColor (["read", ["MARKER" + (str _counter5),"markerColor", ""]] call _inidbi);
 	_marker setMarkerAlpha (["read", ["MARKER" + (str _counter5),"markerAlpha", ""]] call _inidbi);
-	_marker setMarkerShape (["read", ["MARKER" + (str _counter5),"markerShape", ""]] call _inidbi);
 
 	_counter5 = _counter5 + 1;
 };
+
+_logicCenter = createCenter sideLogic; 
 
 MSLPROGRESS = 0.7;
 publicVariable "MSLPROGRESS";
@@ -605,12 +634,18 @@ while {(["read", ["TASKS" + (str _counter6), "taskState", ""]] call _inidbi)!=""
 
 ///////////////
 _units = [];
+_syncedUnitsObjects = [];
 _syncedUnits = (["read", ["TASKS" + (str _counter6), "syncedUnits", 0]] call _inidbi);
+	{
+		if ((_x getVariable ["MSLName",""]) in _syncedUnits) then {
+			_syncedUnitsObjects pushBackUnique _x;
+		};
+	} forEach allUnits;
 	switch ((["read", ["TASKS" + (str _counter6), "owner", 0]] call _inidbi)) do {
 		case 0: {
 			{
 				if ((_x getVariable ["MSLName",""]) in _unitMSLNames) then {
-					_units append [_x];
+					_units pushBackUnique _x;
 				};
 			} forEach allUnits;
 		};
@@ -653,17 +688,47 @@ _syncedUnits = (["read", ["TASKS" + (str _counter6), "syncedUnits", 0]] call _in
 	};
 
 //////////////////////////////
+_logicGroup = createGroup _logicCenter;
 
-	[_units,
-	(["read", ["TASKS" + (str _counter6), "id", "TASKS" + (str _counter6)]] call _inidbi),
-	(["read", ["TASKS" + (str _counter6), "description", ""]] call _inidbi),
-	(["read", ["TASKS" + (str _counter6), "destination", [0,0,0]]] call _inidbi),
-	(["read", ["TASKS" + (str _counter6), "taskState", "CREATED"]] call _inidbi),
-	1,
-	true,
-	"",
-	true
-	] call BIS_fnc_taskCreate;
+newTask = nil;
+
+_grp = createGroup sideLogic; 
+"ModuleTaskCreate_F" createUnit [ 
+ (["read", ["TASKS" + (str _counter6), "destination", [0,0,0]]] call _inidbi), 
+ _grp, 
+ "this setVariable [""BIS_fnc_initModules_disableAutoActivation"", false, true]; newTask = this;" 
+];
+
+waitUntil { !(isNil "newTask") };
+_logic = newTask;
+//_logic = _logicGroup createUnit ["ModuleTaskCreate_F", [0,0,0], [], 0, "NONE"];
+_logic setVehicleVarName (["read", ["TASKS" + (str _counter6), "id", "TASKS" + (str _counter6)]] call _inidbi); 
+missionNamespace setVariable [(["read", ["TASKS" + (str _counter6), "id", "TASKS" + (str _counter6)]] call _inidbi), _logic, true];
+//_logic setVariable ["BIS_fnc_initModules_disableAutoActivation", false, true];
+{
+	_logic setVariable[_x select 0,_x select 1];
+} forEach (["read", ["TASKS" + (str _counter6), "allVars", []]] call _inidbi);
+_logic setVariable ["MSLID", _counter6];
+_logic setVariable ["MSLName", "TASKS" + (str _counter6)];
+
+_logic synchronizeObjectsAdd _syncedUnitsObjects;
+
+[_logic, _syncedUnitsObjects, true] call BIS_fnc_moduleTaskCreate;
+
+// _logic setTaskState (["read", ["TASKS" + (str _counter6), "taskState", "CREATED"]] call _inidbi);
+// _logic setSimpleTaskDescription (["read", ["TASKS" + (str _counter6), "description", ""]] call _inidbi);
+///////////////////////////////
+
+	// [_units,
+	// (["read", ["TASKS" + (str _counter6), "id", "TASKS" + (str _counter6)]] call _inidbi),
+	// (["read", ["TASKS" + (str _counter6), "description", ""]] call _inidbi),
+	// (["read", ["TASKS" + (str _counter6), "destination", [0,0,0]]] call _inidbi),
+	// (["read", ["TASKS" + (str _counter6), "taskState", "CREATED"]] call _inidbi),
+	// 1,
+	// true,
+	// "",
+	// true
+	// ] call BIS_fnc_taskCreate;
 
 	
 	_counter7 = 0;
@@ -686,20 +751,21 @@ MSLPROGRESS = 0.8;
 publicVariable "MSLPROGRESS";
 
 //logics
-_logicCenter = createCenter sideLogic; 
 _counter8 = 0;
 while {(["read", ["LOGIC" + (str _counter8), "type", ""]] call _inidbi)!=""} do {
 	//_logic = (["read", ["LOGIC" + (str _counter8), "type", ""]] call _inidbi) createVehicle [0,0,0];
+	if ((["read", ["LOGIC" + (str _counter8), "type", ""]] call _inidbi)!="ModuleTaskCreate_F") then {
 _logicGroup = createGroup _logicCenter;
-_logic = _logicGroup createUnit ["Logic", [0,0,0], [], 0, "NONE"];
+_logic = _logicGroup createUnit [(["read", ["LOGIC" + (str _counter8), "type", ""]] call _inidbi), [0,0,0], [], 0, "NONE"];
 _logic setVehicleVarName ("LOGIC" + (str _counter8)); 
-missionNamespace setVariable ["myLogic", _logic, true];
-	{
-		_logic setVariable[_x select 0,_x select 1];
-	} forEach (["read", ["LOGIC" + (str _counter8), "allVars", ""]] call _inidbi);
-	_logic setVariable ["MSLID", _counter8];
-	_logic setVariable ["MSLName", "LOGIC" + (str _counter8)];
-
+missionNamespace setVariable ["LOGIC" + (str _counter8), _logic, true];
+_logic setVariable ["BIS_fnc_initModules_disableAutoActivation", false, true];
+{
+	_logic setVariable[_x select 0,_x select 1];
+} forEach (["read", ["LOGIC" + (str _counter8), "allVars", ""]] call _inidbi);
+_logic setVariable ["MSLID", _counter8];
+_logic setVariable ["MSLName", "LOGIC" + (str _counter8)];
+	};
 	_counter8 = _counter8 + 1;
 };
 

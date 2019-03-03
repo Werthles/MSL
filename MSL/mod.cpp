@@ -1,4 +1,4 @@
-dir = "@MSL";
+dir = "MSL";
 author = "Werthles";
 hideName = 0;
 hidePicture = 0;

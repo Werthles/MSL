@@ -467,7 +467,7 @@ publicVariable "MSLPROGRESS";
 		["write", [_groupID, "synchronizedWaypoints" + _waypointNum, _syncWPs]] call _inidbi;
 		//waypointStatements  setWaypointStatements
 		["write", [_groupID, "waypointStatements" + _waypointNum, (waypointStatements  _x)]] call _inidbi;
-	}forEach waypoints _x;
+	}forEach (waypoints _x);
 
 	//vars
 	_allVars = [];
@@ -706,6 +706,17 @@ _tasks = [];
 
 	["write", [_taskNum, "syncedUnits", _syncedUnits]] call _inidbi;
 	["write", [_taskNum, "owner", (_x getVariable ["owner",-1])]] call _inidbi;
+	
+	//vars
+	_allVars = [];
+	_object = _x;
+	{
+		if (typeName (_object getVariable[_x,[]]) in ["SCALAR","STRING","BOOL","TEXT","CODE"]) then {
+			_allVars append [[_x,_object getVariable[_x,""]]];
+		};
+	} forEach (allVariables _x);
+	["write", [_taskNum, "allVars", _allVars]] call _inidbi;
+
 	//created task
 	//[_units,_x call BIS_fnc_taskVar,_x call BIS_fnc_taskDescription,_x call BIS_fnc_taskDestination, _x call BIS_fnc_taskState] call BIS_fnc_TaskCreate;
 
