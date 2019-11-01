@@ -99,7 +99,7 @@ if (isNil "_allSaves") then {_allSaves = []};
 if (count _allSaves > 0) then {
 	_newSaveNumber = str ((parseNumber (_allSaves select ((count _allSaves) - 1))) + 1);
 };
-if (_saveName == "") then
+if (_saveName == "" or ("exists" call (["new", _saveName] call OO_INIDBI))) then
 {
 	_saveName = worldName + "_" + missionName + "_(" +
 	str(_dateTime select 2) + "." + str (_dateTime select 1) + "." + str (_dateTime select 0) + "_" + str(_dateTime select 3) +"." + str(_dateTime select 4) + "." + str(_dateTime select 5) + ")" ;

@@ -60,8 +60,10 @@ waitUntil {(count (MSLBUSES) > 0)};
 
 if (hasInterface) then {
 	[] spawn {
-		sleep 15;
-		player removeAction MSLAddActionID;
-		MSLAddActionID = player addAction ["<t color='#FF5500'>Multiplayer Save and Load</t>",{createdialog "MSLDialog";},[],-999,false,true,"","isServer or serverCommandAvailable ""#kick"""];
+		while {true} do {
+			sleep 100;
+			player removeAction MSLAddActionID;
+			MSLAddActionID = player addAction ["<t color='#FF5500'>Multiplayer Save and Load</t>",{createdialog "MSLDialog";},[],-999,false,true,"","isServer or serverCommandAvailable ""#kick"""];
+		};
 	};
 };
