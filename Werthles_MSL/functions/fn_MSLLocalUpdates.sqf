@@ -8,4 +8,4 @@ setDate _Rdate;
 selectPlayer _switchObject;
 //hint "MSLLU " + (str _switchObject);
 
-player addAction ["<t color='#FF5500'>Missions Save/Load</t>",{createdialog "MSLDialog";},[],-999,false,true,"","isServer or serverCommandAvailable ""#kick"""];
+MSLAddActionID = player addAction ["<t color='#FF5500'>Multiplayer Save and Load</t>",{createdialog "MSLDialog";},[],-999,false,true,"","isServer or serverCommandAvailable ""#kick"""];

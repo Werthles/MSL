@@ -61,10 +61,10 @@ class MSLDialog
 		class MSLTitle: MSLRscText
 		{
 			idc = 7530;
-			text = "Multiplayer Save/Load";
-			x = 8 * GUI_GRID_W + GUI_GRID_X;
+			text = "Multiplayer Save and Load";
+			x = 7.9 * GUI_GRID_W + GUI_GRID_X;
 			y = 1.4 * GUI_GRID_H + GUI_GRID_Y;
-			w = 11 * GUI_GRID_W;
+			w = 11.2 * GUI_GRID_W;
 			h = 1.8 * GUI_GRID_H;
 		};
 		class MSLMissionsListbox: MSLRscListbox

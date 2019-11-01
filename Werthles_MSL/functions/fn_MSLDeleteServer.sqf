@@ -2,7 +2,7 @@ private ["_inidbi",  "_success", "_inidbiSAVELIST"];
 
 //hint "Serverdelete";
 //player setPos [2000,2000,2500];
-params [["_clientID",-2,[0]],["_filename","filename",[""]]];
+params [["_clientID",-2,[0]],["_filename","MSLERRORfilename",[""]]];
 
 _inidbi = ["new", _filename] call OO_INIDBI;
 

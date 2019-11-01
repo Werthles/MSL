@@ -32,7 +32,10 @@ if (_RworldName == worldName) then {
 		_x call BIS_fnc_deleteTask;
 	} forEach (_x call BIS_fnc_tasksUnit);
 } forEach allUnits;
-
+{
+	[_x] join grpNull;
+	(group _x) deleteGroupWhenEmpty true;
+} forEach allUnits;
 //delete allMissionObjects 
 {
 	_x setVariable ["MSLID", nil];
@@ -57,6 +60,7 @@ if (_RworldName == worldName) then {
 			};
 		} forEach MSLBUSES;
 		_x moveInAny _bus;
+		_x setVariable ["MSLPlayable", false];
 	}
 	else {
 		deleteVehicle _x;
@@ -153,6 +157,8 @@ missionNamespace setVariable ["AIR" + (str _counter), _air, true];
 	_air setVariable ["MSLID", _counter];
 	_air setVariable ["MSLName", "AIR" + (str _counter)];
 
+	_air setObjectTextureGlobal [0,["read", ["CAR" + (str _counter), "colour", ""]] call _inidbi];
+
 	_vehicles pushBack _air;
 	_counter = _counter + 1;
 };
@@ -175,6 +181,8 @@ while {(["read", ["CAR" + (str _counter), "typeOf", ""]] call _inidbi) != ""} do
 	_car setVariable ["MSLID", _counter];
 	_car setVariable ["MSLName", "CAR" + (str _counter)];
 
+	_car setObjectTextureGlobal [0,["read", ["CAR" + (str _counter), "colour", ""]] call _inidbi];
+
 	_vehicles pushBack _car;
 	_counter = _counter + 1;
 };
@@ -196,6 +204,8 @@ while {["read", ["BOAT" + (str _counter), "typeOf", ""]] call _inidbi != ""} do 
 	} forEach (["read", ["BOAT" + (str _counter), "allVars", []]] call _inidbi);
 	_boat setVariable ["MSLID", _counter];
 	_boat setVariable ["MSLName", "BOAT" + (str _counter)];
+
+	_boat setObjectTextureGlobal [0,["read", ["CAR" + (str _counter), "colour", ""]] call _inidbi];
 
 	_vehicles pushBack _boat;
 	_counter = _counter + 1;
@@ -406,7 +416,7 @@ missionNamespace setVariable ["UNIT" + _MSLID, MSLnewUnit, true];
 		_wp synchronizeWaypoint _wpsToSync;
 	_counter3 = _counter3 + 1;
 	};
-
+	deleteWaypoint [_grp, 0];
 	_counter = _counter + 1;
 	//reset for next group
 	deleteVehicle _dummy;
@@ -460,8 +470,8 @@ _playerList3 append _playerList2;
 	};
 } forEach (allUnits - _unitsOnBuses);
 
-_i = 0;
 while {_playerCount >0} do {
+	_i = 0;
 	playerToJoin = (allPlayers select _i);
 	while {(playerToJoin in _unitsOnBuses)} do {
 		_i = _i + 1;
@@ -476,6 +486,7 @@ while {_playerCount >0} do {
 		(["read", ["UNIT" + _MSLID, "rank", "PRIVATE"]] call _inidbi)
 	];
 
+//missionNamespace setVariable ["NEWUNIT" + (str _playerCount), MSLnewUnit, true];
 	waitUntil { !(isNil "MSLnewUnit") };
 	MSLnewUnit setVariable ["MSLPlayable",true];
 	MSLnewUnit setVariable ["MSLPlayer",true];
@@ -788,9 +799,9 @@ publicVariable "MSLPROGRESS";
 
 //remove tags
 {
-	_x setVariable ["MSLID", nil];
-	_x setVariable ["MSLName", nil];
-	_x setVariable ["MSLPlayer", nil];
+	// _x setVariable ["MSLID", nil];
+	// _x setVariable ["MSLName", nil];
+	// _x setVariable ["MSLPlayer", nil];
 	//_x setVariable ["MSLPlayable", nil];
 } forEach allMissionObjects "all";
 

@@ -62,20 +62,22 @@ _allMissionObjectsTaskStates = allMissionObjects "ModuleTaskSetState_F";
 _allMissionObjectsTasks = allMissionObjects "ModuleTaskCreate_F";
 _allMissionObjectsLogic = allMissionObjects "Logic";
 _allUnitsOnTheBus = [];
+_allGroupsOnTheBus = [];
 {
 	if ((vehicle _x) in MSLBUSES) then {
 		_allUnitsOnTheBus append [_x];
+		_allGroupsOnTheBus pushBackUnique (group _x);
 	};
 } forEach allUnits;
 _allUnitsNotOnTheBus = allUnits - _allUnitsOnTheBus;
 
 _allBadGroups = [];
 {
-	if (((count(units(_x)))<1) or (vehicle((units _x) select 0)) in MSLBUSES) then {
+	if ((count(units(_x))<1) or ((vehicle((units _x) select 0)) in MSLBUSES)) then {
 		_allBadGroups append [_x];
 	};
 } forEach allGroups;
-_allGoodGroups = allGroups - _allBadGroups;
+_allGoodGroups = (allGroups - _allBadGroups) - _allGroupsOnTheBus;
 //remove tags
 {
 	_x setVariable ["MSLID", nil];
@@ -190,6 +192,9 @@ if (_hiddenCheck) then {
 	//vectorUp setVectorUp
 	["write", [_airNum, "vectorUp", (vectorUp _x)]] call _inidbi;
 
+	//colour
+	["write", [_airNum, "colour" , ((getObjectTextures _x) select 0)]] call _inidbi;
+
 	//vars
 	_allVars = [];
 	_object = _x;
@@ -218,6 +223,9 @@ if (_hiddenCheck) then {
 	//vectorUp setVectorUp
 	["write", [_carNum, "vectorUp", (vectorUp _x)]] call _inidbi;
 
+	//colour
+	["write", [_carNum, "colour" , ((getObjectTextures _x) select 0)]] call _inidbi;
+
 	//vars
 	_allVars = [];
 	_object = _x;
@@ -245,6 +253,9 @@ if (_hiddenCheck) then {
 	["write", [_boatNum, "vectorDir", (vectorDir _x)]] call _inidbi;
 	//vectorUp setVectorUp
 	["write", [_boatNum, "vectorUp", (vectorUp _x)]] call _inidbi;
+
+	//colour
+	["write", [_boatNum, "colour" , ((getObjectTextures _x) select 0)]] call _inidbi;
 
 	//vars
 	_allVars = [];
@@ -411,8 +422,10 @@ MSLPROGRESS = 0.4;
 publicVariable "MSLPROGRESS";
 
 //groups
+_groupIndex = 0;
 {
-	_groupID = "GROUP" + (str _forEachIndex);
+	if ((count (units _x))>0) then {
+	_groupID = "GROUP" + (str _groupIndex);
 	["write", [_groupID, "side", str (side _x)]] call _inidbi;
 	{
 		["write", [_groupID, "unit" + (str _forEachIndex), _x getVariable "MSLID"]] call _inidbi;
@@ -479,11 +492,13 @@ publicVariable "MSLPROGRESS";
 	} forEach allVariables _x;
 	["write", [_groupID, "allVars", _allVars]] call _inidbi;
 	
-	_x setVariable ["MSLID",_forEachIndex];
+	_x setVariable ["MSLID",_groupIndex];
 	_x setVariable ["MSLName",_groupID];
 	
 	MSLPROGRESS = 0.4 + (1/(count _allGoodGroups));
 	publicVariable "MSLPROGRESS";
+	_groupIndex = _groupIndex + 1;
+};
 }forEach _allGoodGroups;
 
 MSLPROGRESS = 0.5;

@@ -7,7 +7,7 @@ if !(isDedicated) then {
 };
 if (isNil "MSLPLAYERINIT") then {
 	MSLPLAYERINIT = true;
-	player addAction ["<t color='#FF5500'>Multiplayer Save/Load</t>",{createdialog "MSLDialog";},[],-999,false,true,"","isServer or serverCommandAvailable ""#kick"""];
+	MSLAddActionID = player addAction ["<t color='#FF5500'>Multiplayer Save and Load</t>",{createdialog "MSLDialog";},[],-999,false,true,"","isServer or serverCommandAvailable ""#kick"""];
 };
 
 MSLPLAYERINIT = false;
@@ -53,7 +53,15 @@ waitUntil {(count (MSLBUSES) > 0)};
 
 {
 	_x addAction ["<t color='#FF5500'>Exit the Bus</t>",{
-		[(_this select 1)] call Werthles_fnc_MSLChangeSlot;
+		[(_this select 1),1234] call Werthles_fnc_MSLChangeSlot;
 	}
 	,[],0,true,true,"","(MSLPROGRESS == 0) or (MSLPROGRESS == 1)"];
 } forEach MSLBUSES;
+
+if (hasInterface) then {
+	[] spawn {
+		sleep 15;
+		player removeAction MSLAddActionID;
+		MSLAddActionID = player addAction ["<t color='#FF5500'>Multiplayer Save and Load</t>",{createdialog "MSLDialog";},[],-999,false,true,"","isServer or serverCommandAvailable ""#kick"""];
+	};
+};
