@@ -4,6 +4,19 @@ private ["_allMissionObjectsAll", "_allMissionObjectsAir", "_allMissionObjectsCa
 MSLPROGRESS = 0;
 publicVariable "MSLPROGRESS";
 
+//missionNamespace
+_allVars = [];
+{
+	if (typeName (missionNamespace getVariable[_x,[]]) in ["SCALAR","STRING","BOOL","TEXT"]) then {
+		_allVars append [[_x,missionNamespace getVariable[_x,""]]];
+	};
+} forEach (allVariables missionNamespace);
+["write", ["MISSIONNAMESPACE", "allVars", _allVars]] call _inidbi;
+//hint (str _allVars);
+
+MSLPROGRESS = 0.05;
+publicVariable "MSLPROGRESS";
+
 //use actionParams and actionIDs to get all player addActions
 //all unit carrying objects and clothes
 //triggers and syncs/links
@@ -799,6 +812,39 @@ _object = _x;
 } forEach _allMissionObjectsLogic;
 
 MSLPROGRESS = 0.9;
+publicVariable "MSLPROGRESS";
+
+//missionNamespace and Locations
+_allLocationTypes = [];
+"_allLocationTypes pushBack configName _x" configClasses (
+	configFile >> "CfgLocationTypes"
+);
+_locationIndex = 0;
+{
+	_x setVariable ["MSL",true];
+	if (_x getVariable "MSL") then {
+		_locationID = "LOCATION" + (str _locationIndex);
+		["write", [_locationID, "locationName", text  _x]] call _inidbi;
+		["write", [_locationID, "locationside", str (side  _x)]] call _inidbi;
+		["write", [_locationID, "locationPosition", locationPosition  _x]] call _inidbi;
+		["write", [_locationID, "locationSize", size  _x]] call _inidbi;
+		["write", [_locationID, "locationType", type  _x]] call _inidbi;
+		
+		//vars
+		_allVars = [];
+		_loc = _x;
+		{
+			if (typeName (_loc getVariable[_x,[]]) in ["SCALAR","STRING","BOOL","TEXT","CODE"]) then {
+				_allVars append [[_x,_loc getVariable[_x,""]]];
+			};
+		} forEach allVariables _x;
+		["write", [_locationID, "allVars", _allVars]] call _inidbi;
+		
+		_locationIndex = _locationIndex + 1;
+	};
+} forEach nearestLocations [[worldSize/2, worldSize/2], _allLocationTypes, worldSize];
+
+MSLPROGRESS = 0.95;
 publicVariable "MSLPROGRESS";
 
 //remove tags

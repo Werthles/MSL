@@ -45,10 +45,12 @@ if (_RworldName == worldName) then {
 	deleteVehicle _x;
 }forEach ((((((allMissionObjects "All") - allUnits) - MSLBUSES) - (allMissionObjects "Logic")) - (entities "HeadlessClient_F")) + (allMissionObjects "ModuleTaskCreate_F") + (allMissionObjects "ModuleTaskSetState_F") + (allMissionObjects "emptyDetector"));
 
+
 //confirm trigger delete
 {
 	deleteVehicle _x;
 }forEach allMissionObjects "emptyDetector";
+
 
 //if unit was previously playable, or is playable/player, keep the unit
 {
@@ -67,8 +69,18 @@ if (_RworldName == worldName) then {
 	};
 }forEach (allUnits - MSLBUSES - (entities "HeadlessClient_F"));
 
+
 //confirm empty groups will be deleted
 { [_x, true] remoteExec ["deleteGroupWhenEmpty", 0];}forEach allGroups;
+
+
+//deleteLocation
+_allLocationTypes = [];
+"_allLocationTypes pushBack configName _x" configClasses (
+	configFile >> "CfgLocationTypes"
+);
+{deleteLocation _x;}
+forEach nearestLocations [[worldSize/2, worldSize/2], _allLocationTypes, worldSize];
 
 //increment progress
 MSLPROGRESS = 0.1;
@@ -111,6 +123,37 @@ enableStressDamage (["read", ["MISSIONDETAILS", "isStressDamageEnabled", false]]
 
 //increment progress
 MSLPROGRESS = 0.2;
+publicVariable "MSLPROGRESS";
+
+//location
+{
+	if ((_x find "LOCATION")>-1) then {
+		//_location = locationNull;
+		// if ((text (nearestLocation [(["read", [_x, "locationPosition", []]] call _inidbi), (["read", [_x, "locationType", ""]] call _inidbi)])) == (["read", [_x, "locationName", ""]] call _inidbi)) then
+		// {
+		// 	_location = nearestLocation [(["read", [_x, "locationPosition", []]] call _inidbi), (["read", [_x, "locationType", ""]] call _inidbi)]
+		// } else {
+			_location = createLocation [
+				(["read", [_x, "locationType", ""]] call _inidbi),
+				(["read", [_x, "locationPosition", []]] call _inidbi),
+				(["read", [_x, "locationSize", []]] call _inidbi) select 0,
+				(["read", [_x, "locationSize", []]] call _inidbi) select 1
+			];
+		//};
+		_location setText (["read", [_x, "locationName", ""]] call _inidbi);
+		_location setSide (call(compile (["read", [_x, "locationside", ""]] call _inidbi)));
+		{
+			_location setVariable[_x select 0,_x select 1];
+		} forEach (["read", [_x, "allVars", []]] call _inidbi);
+	};
+}forEach ("getSections" call _inidbi);
+
+//missionNamespace
+{
+	missionNamespace setVariable[_x select 0,_x select 1];
+} forEach (["read", ["MISSIONNAMESPACE", "allVars", []]] call _inidbi);
+//increment progress
+MSLPROGRESS = 0.25;
 publicVariable "MSLPROGRESS";
 
 //buildings
