@@ -159,7 +159,7 @@ publicVariable "MSLPROGRESS";
 //buildings
 {
 	if ((_x find "BUILDING")>-1) then {
-		_building = (["read", [_x, "typeOf", ""]] call _inidbi) createVehicle (toArray(["read", [_x, "position", [0,0,0]]] call _inidbi));
+		_building = (["read", [_x, "typeOf", ""]] call _inidbi) createVehicle (toArray(["read", [_x, "position", ""]] call _inidbi));
 		{
 			_building setVariable[_x select 0,_x select 1];
 		} forEach (["read", [_x, "allVars", []]] call _inidbi);

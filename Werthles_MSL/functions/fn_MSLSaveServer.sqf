@@ -4,19 +4,6 @@ private ["_allMissionObjectsAll", "_allMissionObjectsAir", "_allMissionObjectsCa
 MSLPROGRESS = 0;
 publicVariable "MSLPROGRESS";
 
-//missionNamespace
-_allVars = [];
-{
-	if (typeName (missionNamespace getVariable[_x,[]]) in ["SCALAR","STRING","BOOL","TEXT"]) then {
-		_allVars append [[_x,missionNamespace getVariable[_x,""]]];
-	};
-} forEach (allVariables missionNamespace);
-["write", ["MISSIONNAMESPACE", "allVars", _allVars]] call _inidbi;
-//hint (str _allVars);
-
-MSLPROGRESS = 0.05;
-publicVariable "MSLPROGRESS";
-
 //use actionParams and actionIDs to get all player addActions
 //all unit carrying objects and clothes
 //triggers and syncs/links
@@ -96,6 +83,10 @@ _allGoodGroups = (allGroups - _allBadGroups) - _allGroupsOnTheBus;
 	_x setVariable ["MSLID", nil];
 } forEach _allMissionObjectsAll;
 
+
+MSLPROGRESS = 0.05;
+publicVariable "MSLPROGRESS";
+
 //if (!("exists" call _inidbi)) then {};
 _inidbiSAVELIST = ["new", "SAVELIST"] call OO_INIDBI;
 
@@ -124,8 +115,6 @@ if (_saveName == "" or ("exists" call (["new", _saveName] call OO_INIDBI))) then
 
 ["delete", _inidbiSAVELIST] call OO_INIDBI;
 
-MSLPROGRESS = 0.1;
-publicVariable "MSLPROGRESS";
 
 //_dateTimeString = "real_date" callExtension "+";
 //_dateTime = parseSimpleArray (_dateTimeString);
@@ -134,6 +123,20 @@ publicVariable "MSLPROGRESS";
 
 _inidbi = ["new", _saveName] call OO_INIDBI;
 	
+
+//missionNamespace
+_allVars = [];
+{
+	if (typeName (missionNamespace getVariable[_x,[]]) in ["SCALAR","STRING","BOOL","TEXT"]) then {
+		_allVars append [[_x,missionNamespace getVariable[_x,""]]];
+	};
+} forEach (allVariables missionNamespace);
+["write", ["MISSIONNAMESPACE", "allVars", _allVars]] call _inidbi;
+//hint (str _allVars);
+
+
+MSLPROGRESS = 0.1;
+publicVariable "MSLPROGRESS";
 //MISSIONDETAILS 
 ["write", ["MISSIONDETAILS", "worldName", worldName]] call _inidbi;
 ["write", ["MISSIONDETAILS", "missionName", missionName]] call _inidbi;
