@@ -84,8 +84,6 @@ _allGoodGroups = (allGroups - _allBadGroups) - _allGroupsOnTheBus;
 } forEach _allMissionObjectsAll;
 
 
-MSLPROGRESS = 0.05;
-publicVariable "MSLPROGRESS";
 
 //if (!("exists" call _inidbi)) then {};
 _inidbiSAVELIST = ["new", "SAVELIST"] call OO_INIDBI;
@@ -115,6 +113,8 @@ if (_saveName == "" or ("exists" call (["new", _saveName] call OO_INIDBI))) then
 
 ["delete", _inidbiSAVELIST] call OO_INIDBI;
 
+MSLPROGRESS = 0.05;
+publicVariable "MSLPROGRESS";
 
 //_dateTimeString = "real_date" callExtension "+";
 //_dateTime = parseSimpleArray (_dateTimeString);
@@ -130,6 +130,8 @@ _allVars = [];
 	if (typeName (missionNamespace getVariable[_x,[]]) in ["SCALAR","STRING","BOOL","TEXT"]) then {
 		_allVars append [[_x,missionNamespace getVariable[_x,""]]];
 	};
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 } forEach (allVariables missionNamespace);
 ["write", ["MISSIONNAMESPACE", "allVars", _allVars]] call _inidbi;
 //hint (str _allVars);
@@ -168,7 +170,6 @@ publicVariable "MSLPROGRESS";
 ["write", ["MISSIONDETAILS", "isStressDamageEnabled", isStressDamageEnabled]] call _inidbi;
 //["write", ["MISSIONDETAILS", "cadetMode", cadetMode]] call _inidbi;
 
-
 MSLPROGRESS = 0.2;
 publicVariable "MSLPROGRESS";
 
@@ -183,11 +184,15 @@ if (_hiddenCheck) then {
 		//hidden map objects
 		if (isObjectHidden _x)  then {
 			_hiddenObjects pushBack _x;
-		}
+		};
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 	}forEach (nearestObjects [[worldSize/2, worldSize/2], ["Building"], worldSize*2, false,true]);
 	{
 		["write", ["HIDDEN" + (str _forEachIndex), "typeOf" , (typeOf _x)]] call _inidbi;
 		["write", ["HIDDEN" + (str _forEachIndex), "position" , toString (getPos _x)]] call _inidbi;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 	}forEach _hiddenObjects;
 };
 
@@ -224,6 +229,8 @@ if (_hiddenCheck) then {
 	//set MSLID
 	_x setVariable ["MSLID",_forEachIndex];
 	_x setVariable ["MSLName",_airNum];
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach _allMissionObjectsAir;
 
 //cars
@@ -255,6 +262,8 @@ if (_hiddenCheck) then {
 	//set MSLID
 	_x setVariable ["MSLID",_forEachIndex];
 	_x setVariable ["MSLName",_carNum];
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach (_allMissionObjectsCar);
 
 //boats
@@ -286,6 +295,8 @@ if (_hiddenCheck) then {
 	//set MSLID
 	_x setVariable ["MSLID",_forEachIndex];
 	_x setVariable ["MSLName",_boatNum];
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach _allMissionObjectsBoat;
 
 //buildings
@@ -315,6 +326,8 @@ if (_hiddenCheck) then {
 	//set MSLID
 	_x setVariable ["MSLID",_forEachIndex];
 	_x setVariable ["MSLName",_buildingNum];
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach _allMissionObjectsBuilding;
 
 MSLPROGRESS = 0.3;
@@ -432,6 +445,8 @@ publicVariable "MSLPROGRESS";
 	
 	_x setVariable ["MSLID",_forEachIndex];//MSLID
 	_x setVariable ["MSLName",_unitNum];
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach _allUnitsNotOnTheBus;
 
 MSLPROGRESS = 0.4;
@@ -515,6 +530,8 @@ _groupIndex = 0;
 	publicVariable "MSLPROGRESS";
 	_groupIndex = _groupIndex + 1;
 };
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach _allGoodGroups;
 
 MSLPROGRESS = 0.5;
@@ -598,6 +615,8 @@ _x setTriggerActivation _dog;
 	
 	_x setVariable ["MSLID",_forEachIndex];
 	_x setVariable ["MSLName",_triggerNum];
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach _allMissionObjectsTrigger;
 
 MSLPROGRESS = 0.6;
@@ -626,6 +645,8 @@ publicVariable "MSLPROGRESS";
 	["write", [_markerNum, "markerAlpha", markerAlpha _x]] call _inidbi;
 	//markerShape setMarkerShape
 	["write", [_markerNum, "markerShape", markerShape _x]] call _inidbi;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 } forEach allMapMarkers;
 
 MSLPROGRESS = 0.7;
@@ -782,6 +803,8 @@ sleep 1;
 ["write", ["TEST", "TEST2", str _x]] call _inidbi;
 	} forEach ((synchronizedObjects (_taskObj)) arrayIntersect (_allMissionObjectsTaskStates));
 ["write", ["TEST", "TEST1", str _x]] call _inidbi;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 } forEach _allMissionObjectsTasks;//(_tasks arrayIntersect _tasks);
 
 MSLPROGRESS = 0.8;
@@ -812,6 +835,8 @@ _object = _x;
 		}; */
 	} forEach allVariables _x;
 	["write", [_logicNum, "allVars", _allVars]] call _inidbi;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 } forEach _allMissionObjectsLogic;
 
 MSLPROGRESS = 0.9;
@@ -845,6 +870,8 @@ _locationIndex = 0;
 		
 		_locationIndex = _locationIndex + 1;
 	};
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 } forEach nearestLocations [[worldSize/2, worldSize/2], _allLocationTypes, worldSize];
 
 MSLPROGRESS = 0.95;

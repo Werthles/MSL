@@ -146,11 +146,15 @@ publicVariable "MSLPROGRESS";
 			_location setVariable[_x select 0,_x select 1];
 		} forEach (["read", [_x, "allVars", []]] call _inidbi);
 	};
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach ("getSections" call _inidbi);
 
 //missionNamespace
 {
 	missionNamespace setVariable[_x select 0,_x select 1];
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 } forEach (["read", ["MISSIONNAMESPACE", "allVars", []]] call _inidbi);
 //increment progress
 MSLPROGRESS = 0.25;
@@ -159,7 +163,9 @@ publicVariable "MSLPROGRESS";
 //buildings
 {
 	if ((_x find "BUILDING")>-1) then {
-		_building = (["read", [_x, "typeOf", ""]] call _inidbi) createVehicle (toArray(["read", [_x, "position", ""]] call _inidbi));
+		_buildingPos = (toArray(["read", [_x, "position", ""]] call _inidbi));
+		if ((count _buildingPos) == 0) then {_buildingPos = [0,0,0]};
+		_building = (["read", [_x, "typeOf", ""]] call _inidbi) createVehicle (_buildingPos);
 		{
 			_building setVariable[_x select 0,_x select 1];
 		} forEach (["read", [_x, "allVars", []]] call _inidbi);
@@ -168,6 +174,8 @@ publicVariable "MSLPROGRESS";
 		_building setVariable ["MSLID", parseNumber (_x select [8])];
 		_building setVariable ["MSLName", _x];
 	};
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach ("getSections" call _inidbi);
 
 //hidden
@@ -175,6 +183,8 @@ publicVariable "MSLPROGRESS";
 	if ((_x find "HIDDEN")>-1) then {
 		hideObjectGlobal (nearestTerrainObjects [(["read", [_x, "position", [0,0,0]]] call _inidbi),[(["read", [_x, "typeOf", ""]] call _inidbi)],0.1] select 0);
 	};
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach ("getSections" call _inidbi);
 
 _vehicles = [];
@@ -184,7 +194,11 @@ _counter = 0;
 while {["read", ["AIR" + (str _counter), "typeOf", ""]] call _inidbi != ""} do {
 
 	_RtypeOf = ["read", ["AIR" + (str _counter), "typeOf", ""]] call _inidbi;
+
+
 	_Rposition = toArray (["read", ["AIR" + (str _counter), "position", ""]] call _inidbi);
+	if ((count _Rposition) < 2) then {_Rposition = [0,0,0]};
+
 	_Rspecial = (["read", ["AIR" + (str _counter), "special", "FORM"]] call _inidbi);
 
 	_air = createVehicle [_RtypeOf, _Rposition, [], 0, _Rspecial];
@@ -204,6 +218,8 @@ missionNamespace setVariable ["AIR" + (str _counter), _air, true];
 
 	_vehicles pushBack _air;
 	_counter = _counter + 1;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 };
 
 //cars
@@ -212,6 +228,7 @@ while {(["read", ["CAR" + (str _counter), "typeOf", ""]] call _inidbi) != ""} do
 
 	_RtypeOf = ["read", ["CAR" + (str _counter), "typeOf", ""]] call _inidbi;
 	_Rposition = toArray (["read", ["CAR" + (str _counter), "position", ""]] call _inidbi);
+	if ((count _Rposition) < 2) then {_Rposition = [0,0,0]};
 
 	_car = createVehicle [_RtypeOf, _Rposition, [], 0, "FORM"];
 	//_car enableSimulationGlobal false;
@@ -228,6 +245,8 @@ while {(["read", ["CAR" + (str _counter), "typeOf", ""]] call _inidbi) != ""} do
 
 	_vehicles pushBack _car;
 	_counter = _counter + 1;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 };
 
 //boats
@@ -236,6 +255,7 @@ while {["read", ["BOAT" + (str _counter), "typeOf", ""]] call _inidbi != ""} do 
 
 	_RtypeOf = ["read", ["BOAT" + (str _counter), "typeOf", ""]] call _inidbi;
 	_Rposition = toArray (["read", ["BOAT" + (str _counter), "position", ""]] call _inidbi);
+	if ((count _Rposition) < 2) then {_Rposition = [0,0,0]};
 
 	_boat = createVehicle [_RtypeOf, _Rposition, [], 0, "FORM"];
 	//_boat enableSimulationGlobal false;
@@ -252,6 +272,8 @@ while {["read", ["BOAT" + (str _counter), "typeOf", ""]] call _inidbi != ""} do 
 
 	_vehicles pushBack _boat;
 	_counter = _counter + 1;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 };
 
 //increment progress
@@ -297,9 +319,12 @@ while {["read", ["GROUP" + (str _counter), "side", ""]] call _inidbi != ""} do {
 	while {(["read", ["GROUP" + (str _counter),"unit" + (str _counter2), -1]] call _inidbi) != -1} do {
 		_MSLID = str (["read", ["GROUP" + (str _counter),"unit" + str _counter2, -1]] call _inidbi);
 		
+	_Rposition = toArray (["read", ["UNIT" + _MSLID, "position", ""]] call _inidbi);
+	if ((count _Rposition) < 2) then {_Rposition = [0,0,0]};
+
 		MSLnewUnit = _grp createUnit [
 			(["read", ["UNIT" + _MSLID, "typeOf", ""]] call _inidbi),
-			toArray (["read", ["UNIT" + _MSLID, "position", ""]] call _inidbi),
+			_Rposition,
 			[],0,"NONE"];
 		waitUntil { !(isNil "MSLnewUnit") };
 
@@ -394,15 +419,17 @@ missionNamespace setVariable ["UNIT" + _MSLID, MSLnewUnit, true];
 		//playale stuff
 		_eee = (["read", ["UNIT" + _MSLID, "isPlayable", false]] call _inidbi);
 		MSLnewUnit setVariable ["MSLPlayable",(_eee or (MSLnewUnit in playableUnits))];
-		waitUntil { ((MSLnewUnit getVariable "MSLPlayable") or !(MSLnewUnit getVariable "MSLPlayable"))};
-		if (["read", ["UNIT" + _MSLID, "vehicleType", ""]] call _inidbi != "") then {
-			{
-				if (_x getVariable ["MSLID",-1] == (["read", ["UNIT" + _MSLID, "vehicle", -2]] call _inidbi)) then {
-					//MSLnewUnit moveInCargo [_x,(["read", ["UNIT" + _MSLID, "vehiclePosition", 0]] call _inidbi)];
-					//MSLnewUnit assignAsCargoIndex [_x,(["read", ["UNIT" + _MSLID, "vehiclePosition", 0]] call _inidbi)];
-					MSLnewUnit moveInAny _x;
-				};
-			}forEach allMissionObjects (["read", ["UNIT" + _MSLID, "vehicleType", ""]] call _inidbi);
+		if !(isNull MSLnewUnit) then {
+			waitUntil { ((MSLnewUnit getVariable "MSLPlayable") or !(MSLnewUnit getVariable "MSLPlayable"))};
+			if (["read", ["UNIT" + _MSLID, "vehicleType", ""]] call _inidbi != "") then {
+				{
+					if (_x getVariable ["MSLID",-1] == (["read", ["UNIT" + _MSLID, "vehicle", -2]] call _inidbi)) then {
+						//MSLnewUnit moveInCargo [_x,(["read", ["UNIT" + _MSLID, "vehiclePosition", 0]] call _inidbi)];
+						//MSLnewUnit assignAsCargoIndex [_x,(["read", ["UNIT" + _MSLID, "vehiclePosition", 0]] call _inidbi)];
+						MSLnewUnit moveInAny _x;
+					};
+				}forEach allMissionObjects (["read", ["UNIT" + _MSLID, "vehicleType", ""]] call _inidbi);
+			};
 		};
 		MSLnewUnit = nil;
 		_counter2 = _counter2 + 1;
@@ -464,6 +491,8 @@ missionNamespace setVariable ["UNIT" + _MSLID, MSLnewUnit, true];
 	//reset for next group
 	deleteVehicle _dummy;
 	_dummy = nil;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 };
 
 MSLPROGRESS = 0.4;
@@ -498,6 +527,8 @@ _unitsOnBuses = [];
 			_playerCount = _playerCount - 1;
 		};
 	};
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 }forEach (allUnits - _unitsOnBuses);
 
 //assign players to units that were playable last time
@@ -511,6 +542,8 @@ _playerList3 append _playerList2;
 			_playerCount = _playerCount - 1;
 		};
 	};
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 } forEach (allUnits - _unitsOnBuses);
 
 while {_playerCount >0} do {
@@ -521,8 +554,12 @@ while {_playerCount >0} do {
 		playerToJoin = (allPlayers select _i);
 	};
 	_MSLID = (playerToJoin getVariable ["MSLID",0]);
+
+	_Rposition = toArray (["read", ["UNIT" + _MSLID, "position", ""]] call _inidbi);
+	if ((count _Rposition) < 2) then {_Rposition = [0,0,0]};
+
 	(["read", ["UNIT" + _MSLID, "typeOf", ""]] call _inidbi) createUnit [
-		toArray (["read", ["UNIT" + _MSLID, "position", ""]] call _inidbi),
+		_Rposition,
 		(group playerToJoin),
 		"MSLnewUnit = this",
 		(["read", ["UNIT" + _MSLID, "skill", 0.3]] call _inidbi),
@@ -539,6 +576,8 @@ while {_playerCount >0} do {
 
 	MSLnewUnit = nil;
 	_playerCount = _playerCount - 1;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 };
 // {
 // 	_x enableSimulationGlobal true;
@@ -556,9 +595,13 @@ publicVariable "MSLPROGRESS";
 	ATRIGS = [];
 _counter4 = 0;
 while {(["read", ["TRIGGER" + (str _counter4), "triggerType", ""]] call _inidbi)!=""} do {
+
+	_Rposition = toArray (["read", ["TRIGGER" + (str _counter4),"getPos", ""]] call _inidbi);
+	if ((count _Rposition) < 2) then {_Rposition = [0,0,0]};
+
 	_trigger = createTrigger [
 "EmptyDetector",
-toArray (["read", ["TRIGGER" + (str _counter4),"getPos", ""]] call _inidbi),
+_Rposition,
 _serverTriggerCheck
 	];
 
@@ -640,6 +683,8 @@ missionNamespace setVariable ["TRIGGER" + (str _counter4), _trigger, true];
 	_trigger setVariable ["MSLName", "TRIGGER" + (str _counter4)];
 
 	_counter4 = _counter4 + 1;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 };
 
 MSLPROGRESS = 0.6;
@@ -648,9 +693,13 @@ publicVariable "MSLPROGRESS";
 //markers
 _counter5 = 0;
 while {(["read", ["MARKER" + (str _counter5), "markerType", ""]] call _inidbi)!=""} do {
+
+	_Rposition = toArray (["read", ["MARKER" + (str _counter5), "markerPos", ""]] call _inidbi);
+	if ((count _Rposition) < 2) then {_Rposition = [0,0,0]};
+
 	_marker = createMarker [
 		(["read", ["MARKER" + (str _counter5), "markerName", "MARKER" + (str _counter5)]] call _inidbi),
-		toArray (["read", ["MARKER" + (str _counter5), "markerPos", ""]] call _inidbi)
+		_Rposition
 	];
 
 	if (((["read", ["MARKER" + (str _counter5),"markerType", ""]] call _inidbi) == "RECTANGLE") or ((["read", ["MARKER" + (str _counter5),"markerType", ""]] call _inidbi) == "ELLIPSE")) then {
@@ -668,6 +717,8 @@ while {(["read", ["MARKER" + (str _counter5), "markerType", ""]] call _inidbi)!=
 	_marker setMarkerAlpha (["read", ["MARKER" + (str _counter5),"markerAlpha", ""]] call _inidbi);
 
 	_counter5 = _counter5 + 1;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 };
 
 _logicCenter = createCenter sideLogic; 
@@ -800,6 +851,8 @@ _logic synchronizeObjectsAdd _syncedUnitsObjects;
 	};
 
 	_counter6 = _counter6 + 1;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 };
 MSLPROGRESS = 0.8;
 publicVariable "MSLPROGRESS";
@@ -821,6 +874,8 @@ _logic setVariable ["MSLID", _counter8];
 _logic setVariable ["MSLName", "LOGIC" + (str _counter8)];
 	};
 	_counter8 = _counter8 + 1;
+MSLPROGRESS = MSLPROGRESS + 0.001;
+publicVariable "MSLPROGRESS";
 };
 
 MSLPROGRESS = 0.9;
