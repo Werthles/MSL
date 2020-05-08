@@ -6,7 +6,7 @@ ctrlEnable [7534, false];
 //hint "save";
 //player setPos [500,500,500];
 
-[clientOwner, (ctrlText 7538), (((findDisplay 753) displayCtrl 7536) ctrlChecked 0), (((findDisplay 753) displayCtrl 7536) ctrlChecked 1), (((findDisplay 753) displayCtrl 7536) ctrlChecked 2)] remoteExec ["Werthles_fnc_MSLSaveServer",2];
+[clientOwner, (ctrlText 7538), (((findDisplay 753) displayCtrl 7538) ctrlChecked 0), (((findDisplay 753) displayCtrl 7538) ctrlChecked 1)] remoteExec ["Werthles_fnc_MSLSaveServer",2];
 MSLPROGRESS = 0;
 publicVariable "MSLPROGRESS";
 [] spawn {

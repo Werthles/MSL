@@ -127,14 +127,14 @@ class MSLDialog
 // GUI EDITOR OUTPUT START (by mwk22, v1.063, #Tiqupo)
 ////////////////////////////////////////////////////////
 
-		class MSLNameText: MSLRscEdit
-		{
-			idc = 7538;
-			x = 2 * GUI_GRID_W + GUI_GRID_X;
-			y = 18 * GUI_GRID_H + GUI_GRID_Y;
-			w = 23 * GUI_GRID_W;
-			h = 1 * GUI_GRID_H;
-		};
+class MSLNameText: MSLRscEdit
+{
+	idc = 7538;
+	x = 2 * GUI_GRID_W + GUI_GRID_X;
+	y = 18 * GUI_GRID_H + GUI_GRID_Y;
+	w = 23 * GUI_GRID_W;
+	h = 1 * GUI_GRID_H;
+};
 ////////////////////////////////////////////////////////
 // GUI EDITOR OUTPUT END
 ////////////////////////////////////////////////////////
@@ -146,9 +146,9 @@ class MSLDialog
 			y = 19.25 * GUI_GRID_H + GUI_GRID_Y;
 			w = 23 * GUI_GRID_W;
 			h = 1 * GUI_GRID_H;
-			strings[] = {"No Hidden Map Objects","Server Triggers","Full Save/Load"};
-			checked_strings[] = {"Hidden Map Objects","Global Triggers","Simple Save/Load"};
-    		columns = 3;
+			strings[] = {"No Hidden Map Objects","Server Triggers"};
+			checked_strings[] = {"Hidden Map Objects","Global Triggers"};
+    		columns = 2;
 			rows = 1;
 		};
 		

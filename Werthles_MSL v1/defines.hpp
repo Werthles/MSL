@@ -351,7 +351,7 @@ class MSLRscText
 class MSLRscCheckbox
 {
 	style = 82;
-	SizeEx = 0.03;
+	SizeEx = 0.035;
 	lineSpacing = 0.2;
     access = 0;
     idc = -1;

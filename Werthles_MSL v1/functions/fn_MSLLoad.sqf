@@ -6,7 +6,7 @@ if (lbCurSel 7531 != -1) then {
 	ctrlEnable [7532, false];
 	ctrlEnable [7533, false];
 	ctrlEnable [7534, false];
-	[clientOwner,lbText[7531, lbCurSel 7531], (((findDisplay 753) displayCtrl 7536) ctrlChecked 0), (((findDisplay 753) displayCtrl 7536) ctrlChecked 1), (((findDisplay 753) displayCtrl 7536) ctrlChecked 2)] remoteExec ["Werthles_fnc_MSLLoadServer",2];
+	[clientOwner,lbText[7531, lbCurSel 7531], (((findDisplay 753) displayCtrl 7538) ctrlChecked 0), (((findDisplay 753) displayCtrl 7538) ctrlChecked 1)] remoteExec ["Werthles_fnc_MSLLoadServer",2];
 } else {
 	hint "No save file selected";
 };
